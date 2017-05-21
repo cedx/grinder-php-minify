@@ -4,6 +4,7 @@ library grinder_php_minify;
 import 'dart:async';
 import 'dart:io';
 import 'package:grinder/grinder.dart';
+import 'package:path/path.dart' as path;
 import 'package:which/which.dart';
 
 part 'src/fast_transformer.dart';
@@ -24,5 +25,5 @@ Future phpMinify(dynamic source, dynamic destination, {dynamic binary, String mo
 
   var sources = new FileSet.fromDir(new FilePath(source).asDirectory, pattern: pattern, recurse: true);
   log(sources.files.toString());
-  return minifier.transform(sources, new FilePath(destination).asDirectory);
+  return minifier.processDirectory(sources, new FilePath(destination).asDirectory);
 }

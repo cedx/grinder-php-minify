@@ -3,7 +3,17 @@ import 'package:test/test.dart';
 
 /// Tests the features of the [Minifier] class.
 void main() => group('Minifier', () {
-  group('.processScript()', () {
+  group('.mode', () {
+    test('should TODO', () {
+    });
+  });
+
+  group('.processDirectory()', () {
+    test('should TODO', () {
+    });
+  });
+
+  group('.processFile()', () {
     test('should TODO', () {
     });
   });

@@ -1,7 +1,7 @@
 part of grinder_php_minify;
 
 /// Removes comments and whitespace from a PHP script, by calling a Web service.
-class FastTransformer {
+class FastTransformer implements Function {
 
   /// The instance providing access to the minifier settings.
   final Minifier _minifier;
@@ -9,8 +9,8 @@ class FastTransformer {
   /// Creates a new fast transformer.
   FastTransformer(this._minifier);
 
-  /// Processes a PHP script and returns it with all its source code minified.
-  Future<String> transform(String script) async {
+  /// Processes the specified PHP [script] and returns its minified contents.
+  Future<String> call(File script) async {
     return '';
   }
 }

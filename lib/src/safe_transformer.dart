@@ -1,7 +1,7 @@
 part of grinder_php_minify;
 
 /// Removes comments and whitespace from a PHP script, by calling a PHP process.
-class SafeTransformer {
+class SafeTransformer implements Function {
 
   /// The instance providing access to the minifier settings.
   final Minifier _minifier;
@@ -9,8 +9,9 @@ class SafeTransformer {
   /// Creates a new safe transformer.
   SafeTransformer(this._minifier);
 
-  /// Processes a PHP script and returns it with all its source code minified.
-  Future<String> transform(String script) async {
-    return '';
+  /// Processes the specified PHP [script] and returns its minified contents.
+  Future<String> call(File script) async {
+    var result = await Process.run(_minifier.binary, ['-w', script.path]);
+    return result.stdout;
   }
 }
