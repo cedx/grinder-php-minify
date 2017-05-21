@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:grinder/grinder.dart';
-import 'package:grinder_php_minify/php_minify.dart';
+// TODO import 'package:grinder_php_minify/php_minify.dart';
 
 /// The list of source directories.
 const List<String> _sources = const ['lib', 'test', 'tool'];
@@ -32,8 +32,8 @@ void fix() => DartFmt.format(_sources);
 void lint() => Analyzer.analyze(_sources);
 
 // TODO
-@Task('php')
-Future php() => phpMinify('var/pms-isol', 'var/build');
+// TODO @Task('php')
+// TODO Future php() => phpMinify('var/pms-isol', 'var/build');
 
 /// Runs all the test suites.
 @Task('Run the tests')
