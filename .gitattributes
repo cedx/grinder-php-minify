@@ -1,0 +1,15 @@
+* text=auto
+
+.editorconfig text
+.gitattributes text
+.gitignore text
+.travis.yml text
+
+*.dart text
+*.info text
+*.md text
+*.txt text
+*.yaml text
+
+*.ico binary
+*.png binary
