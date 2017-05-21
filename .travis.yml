@@ -1,9 +1,21 @@
-language: dart
-dart: stable
+language: php
 sudo: false
+
+php:
+- '7.0'
+- '7.1'
 
 notifications:
   email: false
+
+install:
+- curl --output $HOME/dartsdk.zip https://storage.googleapis.com/dart-archive/channels/stable/release/latest/sdk/dartsdk-linux-x64-release.zip
+- unzip $HOME/dartsdk.zip -d $HOME
+- rm $HOME/dartsdk.zip
+- export DART_SDK="$HOME/dart-sdk"
+- export PATH="$DART_SDK/bin:$HOME/.pub-cache/bin:$PATH"
+- dart --version
+- pub get
 
 script: pub run grinder test
 after_script: pub run coveralls --file=var/lcov.info
