@@ -9,7 +9,7 @@ class SafeTransformer implements Function {
   /// Creates a new safe transformer.
   SafeTransformer(this._minifier);
 
-  /// Processes the specified PHP [script] and returns its minified contents.
+  /// Processes the specified PHP [script] and returns its contents minified.
   Future<String> call(File script) async =>
     (await Process.run(_minifier.binary, ['-w', script.path])).stdout;
 }
