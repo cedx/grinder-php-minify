@@ -1,28 +1,25 @@
 part of grinder_php_minify;
 
-/// Processes the specified PHP [script] and returns its contents minified.
-typedef Future<String> Transform(File script);
-
 /// Removes PHP comments and whitespace by applying the ['php_strip_whitespace()'](https://secure.php.net/manual/en/function.php-strip-whitespace.php) function.
 class Minifier {
 
   /// Creates a new PHP minifier.
-  Minifier([this.binary = 'php', this.transform]) {
-    if (transform == null) transform = new SafeTransformer(this);
+  Minifier([this.binary = 'php', this.transformer]) {
+    if (transformer == null) transformer = new SafeTransformer(this);
   }
 
   /// The path to the PHP executable.
   String binary;
 
   /// The transformation type.
-  String get mode => transform is FastTransformer ? 'fast' : 'safe';
-  set mode(String value) => transform = value == 'fast' ? new FastTransformer(this) : new SafeTransformer(this);
+  String get mode => transformer is FastTransformer ? 'fast' : 'safe';
+  set mode(String value) => transformer = value == 'fast' ? new FastTransformer(this) : new SafeTransformer(this);
 
   /// Value indicating whether to silent the plug-in output.
   bool silent = false;
 
-  /// The function used to process the PHP code.
-  Transform transform;
+  /// The instance used to process the PHP code.
+  Transformer transformer;
 
   /// Minifies the specified PHP [source] directory and saves the resulting output to the specified [destination] directory.
   ///
@@ -45,10 +42,9 @@ class Minifier {
   Future _processFiles(Iterable<List<File>> files) async {
     for (var pair in files) {
       if (!silent) log('Minifying: ${pair.first.path}');
-      await pair.last.writeAsString(await transform(pair.first));
+      await pair.last.writeAsString(await transformer.transform(pair.first));
     }
 
-    var transformer = transform as FastTransformer;
-    if (transformer != null) await transformer.close();
+    return transformer.close();
   }
 }

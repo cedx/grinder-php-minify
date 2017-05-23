@@ -1,7 +1,7 @@
 part of grinder_php_minify;
 
 /// Removes comments and whitespace from a PHP script, by calling a Web service.
-class FastTransformer implements Function {
+class FastTransformer implements Transformer {
 
   /// The default address that the server is listening on.
   static final InternetAddress defaultAddress = InternetAddress.LOOPBACK_IP_V4;
@@ -18,17 +18,9 @@ class FastTransformer implements Function {
   /// Value indicating whether the PHP process is currently listening.
   bool get listening => _phpServer != null;
 
-  /// Processes the specified PHP [script] and returns its contents minified.
-  Future<String> call(File script) async {
-    await listen();
-
-    var file = Uri.encodeComponent(script.path);
-    var url = 'http://${_phpServer['address']}:${_phpServer['port']}/index.php?file=$file';
-    return (await http.get(url)).body;
-  }
-
   /// Terminates the underlying PHP process: stops the server from accepting new connections.
   /// It does nothing if the server is already closed.
+  @override
   Future close() async {
     if (!listening) return;
     _phpServer['process'].kill();
@@ -51,6 +43,16 @@ class FastTransformer implements Function {
     };
 
     return new Future.delayed(const Duration(seconds: 1), () => port);
+  }
+
+  /// Processes the specified PHP [script] and returns its contents minified.
+  @override
+  Future<String> transform(File script) async {
+    await listen();
+
+    var file = Uri.encodeComponent(script.path);
+    var url = 'http://${_phpServer['address']}:${_phpServer['port']}/index.php?file=$file';
+    return (await http.get(url)).body;
   }
 
   /// Gets an ephemeral port chosen by the system.

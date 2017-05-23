@@ -12,6 +12,7 @@ import 'package:which/which.dart';
 part 'src/fast_transformer.dart';
 part 'src/minifier.dart';
 part 'src/safe_transformer.dart';
+part 'src/transformer.dart';
 
 /// Minifies the specified PHP [source] directory and saves the resulting output to the specified [destination] directory.
 ///
