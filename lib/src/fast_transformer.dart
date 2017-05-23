@@ -39,7 +39,7 @@ class FastTransformer implements Transformer {
     _phpServer = {
       'address': address,
       'port': port,
-      'process': Process.start(_minifier.binary, ['-S', '$address:$port', '-t', webroot.toFilePath()])
+      'process': await Process.start(_minifier.binary, ['-S', '$address:$port', '-t', webroot.toFilePath()])
     };
 
     return new Future.delayed(const Duration(seconds: 1), () => port);

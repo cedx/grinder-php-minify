@@ -48,7 +48,6 @@ void main() => group('Minifier', () {
       expect(await minifier.transformer.transform(script), contains('__construct() { }'));
     });
 
-    var transformer = minifier.transformer as FastTransformer;
-    if (transformer != null) transformer.close();
+    minifier.transformer.close();
   });
 });

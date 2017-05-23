@@ -6,7 +6,11 @@ import 'package:test/test.dart';
 void main() => group('FastTransformer', () {
   group('.close()', () {
     test('should complete without any error', () async {
-      expect(new FastTransformer(new Minifier()).close(), completes);
+      var transformer = new FastTransformer(new Minifier());
+      expect(transformer.close(), completes);
+
+      await transformer.listen();
+      expect(transformer.close(), completes);
     });
   });
 
@@ -29,5 +33,7 @@ void main() => group('FastTransformer', () {
     test('should remove the whitespace', () async {
       expect(await transformer.transform(script), contains('__construct() { }'));
     });
+
+    transformer.close();
   });
 });
