@@ -31,6 +31,7 @@ void main() => group('Minifier', () {
   group('.transformer', () {
     var script = getFile('test/fixtures/sample.php');
     var minifier = new Minifier()..silent = true;
+    tearDownAll(() => minifier.transformer.close());
 
     test('should remove the inline comments', () async {
       expect(await minifier.transformer.transform(script), contains("<?= 'Hello World!' ?>"));
@@ -47,7 +48,5 @@ void main() => group('Minifier', () {
     test('should remove the whitespace', () async {
       expect(await minifier.transformer.transform(script), contains('__construct() { }'));
     });
-
-    minifier.transformer.close();
   });
 });

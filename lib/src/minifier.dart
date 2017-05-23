@@ -21,7 +21,7 @@ class Minifier {
   /// The instance used to process the PHP code.
   Transformer transformer;
 
-  /// Minifies the specified PHP [source] directory and saves the resulting output to the specified [destination] directory.
+  /// Minifies the PHP files of the specified [source] directory and saves the resulting output to the specified [destination] directory.
   ///
   /// Uses the specified file [pattern] to match the eligible PHP scripts.
   /// A [recurse] value indicates whether to process the directory recursively.

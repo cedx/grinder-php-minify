@@ -17,6 +17,7 @@ void main() => group('FastTransformer', () {
   group('.transform()', () {
     var script = getFile('test/fixtures/sample.php');
     var transformer = new FastTransformer(new Minifier());
+    tearDownAll(() => transformer.close());
 
     test('should remove the inline comments', () async {
       expect(await transformer.transform(script), contains("<?= 'Hello World!' ?>"));
@@ -33,7 +34,5 @@ void main() => group('FastTransformer', () {
     test('should remove the whitespace', () async {
       expect(await transformer.transform(script), contains('__construct() { }'));
     });
-
-    transformer.close();
   });
 });
