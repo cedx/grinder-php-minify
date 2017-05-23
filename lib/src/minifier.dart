@@ -42,6 +42,7 @@ class Minifier {
   Future _processFiles(Iterable<List<File>> files) async {
     for (var pair in files) {
       if (!silent) log('Minifying: ${pair.first.path}');
+      await pair.last.parent.create(recursive: true);
       await pair.last.writeAsString(await transformer.transform(pair.first));
     }
 
