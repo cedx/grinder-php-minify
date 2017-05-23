@@ -1,11 +1,17 @@
-import 'dart:io';
+import 'package:grinder/grinder.dart';
 import 'package:grinder_php_minify/php_minify.dart';
 import 'package:test/test.dart';
 
 /// Tests the features of the [FastTransformer] class.
 void main() => group('FastTransformer', () {
+  group('.close()', () {
+    test('should complete without any error', () async {
+      expect(new FastTransformer(new Minifier()).close(), completes);
+    });
+  });
+
   group('.transform()', () {
-    var script = new File('test/fixtures/sample.php');
+    var script = getFile('test/fixtures/sample.php');
     var transformer = new FastTransformer(new Minifier());
 
     test('should remove the inline comments', () async {

@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'package:grinder/grinder.dart';
 import 'package:grinder_php_minify/php_minify.dart';
 import 'package:test/test.dart';
 
@@ -11,7 +11,7 @@ void main() => group('SafeTransformer', () {
   });
 
   group('.transform()', () {
-    var script = new File('test/fixtures/sample.php');
+    var script = getFile('test/fixtures/sample.php');
     var transformer = new SafeTransformer(new Minifier());
 
     test('should remove the inline comments', () async {

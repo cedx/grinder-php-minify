@@ -29,7 +29,7 @@ class Minifier {
     var sources = new FileSet.fromDir(source, pattern: pattern, recurse: recurse);
     return _processFiles(sources.files.map((src) {
       var dest = path.join(destination.path, path.relative(src.path, from: source.path));
-      return [src, new File(dest)];
+      return [src, getFile(dest)];
     }));
   }
 
