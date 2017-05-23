@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:grinder/grinder.dart';
-// TODO import 'package:grinder_php_minify/php_minify.dart';
 
 /// The list of source directories.
 const List<String> _sources = const ['lib', 'test', 'tool'];
@@ -15,9 +14,7 @@ void clean() => defaultClean();
 /// Uploads the code coverage report.
 @Task('Upload the code coverage')
 @Depends(test)
-void coverage() {
-  Pub.run('coveralls', arguments: ['--file=var/lcov.info']);
-}
+String coverage() => Pub.run('coveralls', arguments: const ['--file=var/lcov.info']);
 
 /// Builds the documentation.
 @Task('Build the documentation')
@@ -30,10 +27,6 @@ void fix() => DartFmt.format(_sources);
 /// Performs static analysis of source code.
 @Task('Perform the static analysis')
 void lint() => Analyzer.analyze(_sources);
-
-// TODO
-// TODO @Task('php')
-// TODO Future php() => phpMinify('var/pms-isol', 'var/build');
 
 /// Runs all the test suites.
 @Task('Run the tests')
