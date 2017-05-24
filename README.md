@@ -43,7 +43,7 @@ import 'dart:async';
 import 'package:grinder/grinder.dart';
 import 'package:grinder_php_minify/php_minify.dart' as php_minify;
 
-@Task('Compress the PHP scripts from a given directory recursively')
+@Task('Compress the PHP scripts from a given directory')
 Future phpDirectory() => php_minify.compress('path/to/src', 'path/to/out');
 
 @Task('Compress a given PHP script')
