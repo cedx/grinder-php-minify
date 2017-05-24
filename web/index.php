@@ -57,7 +57,7 @@ class Application {
   public function sendResponse(string $body, int $status = 200) {
     http_response_code($status);
     header('Content-Length: '.strlen($body));
-    header('Content-Type: text/plain; charset=utf-8');
+    header('Content-Type: text/plain; charset='.mb_internal_encoding());
     echo $body;
   }
 }
