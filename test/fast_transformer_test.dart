@@ -1,5 +1,5 @@
 import 'package:grinder/grinder.dart';
-import 'package:grinder_php_minify/php_minify.dart';
+import 'package:grinder_php_minify/grinder_php_minify.dart';
 import 'package:test/test.dart';
 
 /// Tests the features of the [FastTransformer] class.

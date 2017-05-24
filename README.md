@@ -26,7 +26,7 @@ $ pub get
 Once the plug-in has been installed, it may be enabled inside your `grind.dart` file:
 
 ```dart
-import 'package:grinder_php_minify/php_minify.dart' as php_minify;
+import 'package:grinder_php_minify/grinder_php_minify.dart' as php_minify;
 ```
 
 ## Usage
@@ -41,7 +41,7 @@ Their usage is the same, only their options differ:
 ```dart
 import 'dart:async';
 import 'package:grinder/grinder.dart';
-import 'package:grinder_php_minify/php_minify.dart' as php_minify;
+import 'package:grinder_php_minify/grinder_php_minify.dart' as php_minify;
 
 @Task('Compress the PHP scripts from a given directory')
 Future phpDirectory() => php_minify.compress('path/to/src', 'path/to/out');
