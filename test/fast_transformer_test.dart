@@ -14,6 +14,14 @@ void main() => group('FastTransformer', () {
     });
   });
 
+  group('.listen()', () {
+    test('should complete without any error', () async {
+      var transformer = new FastTransformer(new Minifier());
+      expect(transformer.listen(), completes);
+      await transformer.close();
+    });
+  });
+
   group('.transform()', () {
     var script = getFile('test/fixtures/sample.php');
     var transformer = new FastTransformer(new Minifier());
