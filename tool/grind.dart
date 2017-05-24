@@ -32,11 +32,7 @@ void lint() => Analyzer.analyze(_sources);
 @Task('Run the tests')
 Future test() async {
   await Future.wait([
-    Dart.runAsync('test/all.dart', vmArgs: const [
-      '--checked',
-      '--enable-vm-service',
-      '--pause-isolates-on-exit'
-    ]),
+    Dart.runAsync('test/all.dart', vmArgs: const ['--checked', '--enable-vm-service', '--pause-isolates-on-exit']),
     Pub.runAsync('coverage', script: 'collect_coverage', arguments: const [
       '--out=var/coverage.json',
       '--resume-isolates',

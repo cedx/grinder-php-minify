@@ -5,8 +5,11 @@ import 'package:test/test.dart';
 /// Tests the features of the [SafeTransformer] class.
 void main() => group('SafeTransformer', () {
   group('.close()', () {
+    var transformer = new SafeTransformer(new Minifier());
+    tearDownAll(() => transformer.close());
+
     test('should complete without any error', () async {
-      expect(new SafeTransformer(new Minifier()).close(), completes);
+      expect(transformer.close(), completes);
     });
   });
 

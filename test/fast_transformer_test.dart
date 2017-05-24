@@ -5,6 +5,9 @@ import 'package:test/test.dart';
 /// Tests the features of the [FastTransformer] class.
 void main() => group('FastTransformer', () {
   group('.close()', () {
+    var transformer = new FastTransformer(new Minifier());
+    tearDownAll(() => transformer.close());
+
     test('should complete without any error', () async {
       var transformer = new FastTransformer(new Minifier());
       expect(transformer.close(), completes);
@@ -15,10 +18,11 @@ void main() => group('FastTransformer', () {
   });
 
   group('.listen()', () {
+    var transformer = new FastTransformer(new Minifier());
+    tearDownAll(() => transformer.close());
+
     test('should complete without any error', () async {
-      var transformer = new FastTransformer(new Minifier());
       expect(transformer.listen(), completes);
-      await transformer.close();
     });
   });
 
