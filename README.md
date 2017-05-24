@@ -60,7 +60,7 @@ If the plug-in cannot find the default `php` binary, or if you want to use a dif
 
 ```dart
 php_minify.compress('path/to/src', 'path/to/out', binary: r'C:\Program Files\PHP\php.exe');
-php_minify.compressFile('path/to/src/file.php', 'path/to/out/file.php', binary: r'C:\Program Files\PHP\php.exe');
+php_minify.compressFile('path/to/src/file.php', 'path/to/out/file.php', binary: '/usr/local/bin/php7');
 ```
 
 ### `mode`
@@ -95,7 +95,7 @@ php_minify.compress('path/to/src', 'path/to/out', pattern: '*.inc.php7');
 ```
 
 ### `recurse`
-By default, a source directory is scanned recursively. You can force the minifier to only process the files located at the root of the source directory by setting the `recurse` option to `false`.
+By default, a source directory is scanned recursively. You can force the minifier to only process the files located at the root of the source directory by setting the `recurse` option to `false`:
 
 ```dart
 php_minify.compress('path/to/src', 'path/to/out', recurse: false);
