@@ -28,8 +28,8 @@ class Minifier {
   Future processDirectory(Directory source, Directory destination, {String pattern = '*.php', bool recurse: true}) async {
     var sources = new FileSet.fromDir(source, pattern: pattern, recurse: recurse);
     return _processFiles(sources.files.map((src) {
-      var dest = path.join(destination.path, path.relative(src.path, from: source.path));
-      return [src, getFile(dest)];
+      var dest = joinFile(destination, [path.relative(src.path, from: source.path)]);
+      return [src, dest];
     }));
   }
 
