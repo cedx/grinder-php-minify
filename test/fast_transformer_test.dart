@@ -21,7 +21,7 @@ void main() => group('FastTransformer', () {
     var transformer = new FastTransformer(new Minifier());
     tearDownAll(() => transformer.close());
 
-    test('should complete without any error', () async {
+    test('should complete without any error', () {
       expect(transformer.listen(), completes);
     });
   });

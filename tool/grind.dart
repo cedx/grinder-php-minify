@@ -36,7 +36,6 @@ Future test() async {
     Pub.runAsync('coverage', script: 'collect_coverage', arguments: const [
       '--out=var/coverage.json',
       '--resume-isolates',
-      '--uri=http://127.0.0.1:8181',
       '--wait-paused'
     ])
   ]);

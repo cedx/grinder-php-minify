@@ -8,7 +8,7 @@ void main() => group('SafeTransformer', () {
     var transformer = new SafeTransformer(new Minifier());
     tearDownAll(() => transformer.close());
 
-    test('should complete without any error', () async {
+    test('should complete without any error', () {
       expect(transformer.close(), completes);
     });
   });
