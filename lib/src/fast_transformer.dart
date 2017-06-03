@@ -48,11 +48,9 @@ class FastTransformer implements Transformer {
   /// Processes the specified PHP [script] and returns its contents minified.
   @override
   Future<String> transform(File script) async {
-    await listen();
-
     var file = Uri.encodeComponent(script.path);
-    var url = 'http://${_phpServer['address']}:${_phpServer['port']}/index.php?file=$file';
-    return (await http.get(url)).body;
+    await listen();
+    return http.read('http://${_phpServer['address']}:${_phpServer['port']}/index.php?file=$file');
   }
 
   /// Gets an ephemeral port chosen by the system.
