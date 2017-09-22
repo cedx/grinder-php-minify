@@ -1,5 +1,5 @@
 # Grinder-PHP-Minify
-![Runtime](https://img.shields.io/badge/dart-%3E%3D1.23-brightgreen.svg) ![Release](https://img.shields.io/pub/v/grinder_php_minify.svg) ![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg) ![Coverage](https://coveralls.io/repos/github/cedx/grinder-php-minify/badge.svg) ![Build](https://travis-ci.org/cedx/grinder-php-minify.svg)
+![Runtime](https://img.shields.io/badge/dart-%3E%3D1.24-brightgreen.svg) ![Release](https://img.shields.io/pub/v/grinder_php_minify.svg) ![License](https://img.shields.io/badge/license-MIT-blue.svg) ![Coverage](https://coveralls.io/repos/github/cedx/grinder-php-minify/badge.svg) ![Build](https://travis-ci.org/cedx/grinder-php-minify.svg)
 
 [Grinder](https://google.github.io/grinder.dart) plug-in minifying [PHP](https://secure.php.net) source code by removing comments and whitespace.
 
@@ -53,7 +53,7 @@ Future phpFile() => php_minify.compressFile('path/to/src/file.php', 'path/to/out
 ## Common options
 These options are shared by the two functions: `compress()` and `compressFile()`.
 
-### `binary`
+### `String binary = "php"`
 The plug-in relies on the availability of the [PHP](https://secure.php.net) executable on the target system. By default, the plug-in will use the `php` binary found on the system path.
 
 If the plug-in cannot find the default `php` binary, or if you want to use a different one, you can provide the path to the `php` executable by using the `binary` option:
@@ -63,7 +63,7 @@ php_minify.compress('path/to/src', 'path/to/out', binary: r'C:\Program Files\PHP
 php_minify.compressFile('path/to/src/file.php', 'path/to/out/file.php', binary: '/usr/local/bin/php7');
 ```
 
-### `mode`
+### `String mode = "safe"`
 The plug-in can work in two manners, which can be selected using the `mode` option:
 
 - the `safe` mode: as its name implies, this mode is very reliable. But it is also very slow as it spawns a new PHP process for every file to be processed. This is the default mode.
@@ -74,7 +74,7 @@ php_minify.compress('path/to/src', 'path/to/out', mode: 'fast');
 php_minify.compressFile('path/to/src/file.php', 'path/to/out/file.php', mode: 'fast');
 ```
 
-### `silent`
+### `bool silent = false`
 By default, the plug-in prints to the standard output the paths of the minified scripts. You can disable this output by setting the `silent` option to `true`.
 
 ```dart
@@ -85,7 +85,7 @@ php_minify.compressFile('path/to/src/file.php', 'path/to/out/file.php', silent: 
 ## Directory options
 These options are specific to the `compress()` function.
 
-### `pattern`
+### `String pattern`
 When processing a directory, a filter is applied on the names of the processed files to determine whether they are PHP scripts. A filename pattern is used to match the eligible PHP scripts.
 
 By default, it's set to `"*.php"`. You can change this pattern to select a different set of PHP scripts:
@@ -94,7 +94,7 @@ By default, it's set to `"*.php"`. You can change this pattern to select a diffe
 php_minify.compress('path/to/src', 'path/to/out', pattern: '*.inc.php7');
 ```
 
-### `recurse`
+### `bool recurse = true`
 By default, a source directory is scanned recursively. You can force the minifier to only process the files located at the root of the source directory by setting the `recurse` option to `false`:
 
 ```dart
@@ -107,4 +107,4 @@ php_minify.compress('path/to/src', 'path/to/out', recurse: false);
 - [Continuous integration](https://travis-ci.org/cedx/grinder-php-minify)
 
 ## License
-[Grinder-PHP-Minify](https://github.com/cedx/grinder-php-minify) is distributed under the Apache License, version 2.0.
+[Grinder-PHP-Minify](https://github.com/cedx/grinder-php-minify) is distributed under the MIT License.
