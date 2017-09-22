@@ -5,15 +5,19 @@ class Minifier {
 
   /// Creates a new PHP minifier.
   Minifier([this.binary = 'php', this.transformer]) {
-    if (transformer == null) transformer = new SafeTransformer(this);
+    transformer ??= new SafeTransformer(this);
   }
 
   /// The path to the PHP executable.
   String binary;
 
   /// The transformation type.
+  String mode;
+
+  /*
   String get mode => transformer is FastTransformer ? 'fast' : 'safe';
   set mode(String value) => transformer = value == 'fast' ? new FastTransformer(this) : new SafeTransformer(this);
+  */
 
   /// Value indicating whether to silent the plug-in output.
   bool silent = false;

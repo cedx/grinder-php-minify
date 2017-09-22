@@ -7,7 +7,7 @@ import 'dart:isolate';
 import 'package:grinder/grinder.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as path;
-import 'package:which/which.dart';
+import 'package:where/where.dart';
 
 part 'src/fast_transformer.dart';
 part 'src/minifier.dart';
@@ -22,8 +22,8 @@ part 'src/transformer.dart';
 /// - [pattern]: the file pattern used to match the eligible PHP scripts.
 /// - [recurse]: a value indicating whether to process the directory recursively.
 /// - [silent]: a value indicating whether to silent the plug-in output.
-Future compress(dynamic source, dynamic destination, {dynamic binary, String mode = 'safe', String pattern = '*.php', bool recurse = true, bool silent = false}) async {
-  var minifier = new Minifier(binary != null ? new FilePath(binary).path : await which('php'))
+Future compress(source, destination, {binary, String mode = 'safe', String pattern = '*.php', bool recurse = true, bool silent = false}) async {
+  var minifier = new Minifier(binary != null ? new FilePath(binary).path : await where('php'))
     ..mode = mode
     ..silent = silent;
 
@@ -41,8 +41,8 @@ Future compress(dynamic source, dynamic destination, {dynamic binary, String mod
 /// - [binary]: the path to the PHP executable. Defaults to the `php` binary found on the system path.
 /// - [mode]: the transformation type.
 /// - [silent]: a value indicating whether to silent the plug-in output.
-Future compressFile(dynamic source, dynamic destination, {dynamic binary, String mode = 'safe', bool silent = false}) async {
-  var minifier = new Minifier(binary != null ? new FilePath(binary).path : await which('php'))
+Future compressFile(source, destination, {binary, String mode = 'safe', bool silent = false}) async {
+  var minifier = new Minifier(binary != null ? new FilePath(binary).path : await where('php'))
     ..mode = mode
     ..silent = silent;
 

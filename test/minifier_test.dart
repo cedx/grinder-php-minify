@@ -18,13 +18,11 @@ void main() => group('Minifier', () {
     });
 
     test('should change the underlying transformer on value update', () {
-      var minifier = new Minifier();
-
-      minifier.mode = 'fast';
-      expect(minifier.transformer, new isInstanceOf<FastTransformer>());
+      var minifier = new Minifier()..mode = 'fast';
+      expect(minifier.transformer, const isInstanceOf<FastTransformer>());
 
       minifier.mode = 'safe';
-      expect(minifier.transformer, new isInstanceOf<SafeTransformer>());
+      expect(minifier.transformer, const isInstanceOf<SafeTransformer>());
     });
   });
 
