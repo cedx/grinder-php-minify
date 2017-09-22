@@ -7,15 +7,15 @@ documentation: https://cedx.github.io/grinder-php-minify
 homepage: https://github.com/cedx/grinder-php-minify
 
 environment:
-  sdk: '>=1.23.0'
+  sdk: '>=1.24.0'
 
 dependencies:
   grinder: ^0.8.0
   http: ^0.11.3
-  path: ^1.4.1
-  which: ^0.1.3
+  path: ^1.4.2
+  where: ^2.1.1
 
 dev_dependencies:
   coverage: ^0.9.2
-  coveralls: ^1.0.0
-  test: ^0.12.20
+  coveralls: ^2.0.1
+  test: ^0.12.24
