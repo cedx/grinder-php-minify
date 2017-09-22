@@ -1,10 +1,8 @@
+dist: trusty
 language: php
 sudo: false
 
-php:
-- '7.0'
-- '7.1'
-
+php: '7.1'
 notifications:
   email: false
 
@@ -17,4 +15,4 @@ install:
 - pub get
 
 script: pub run grinder test
-after_script: pub run coveralls --file=var/lcov.info
+after_success: pub run coveralls var/lcov.info
