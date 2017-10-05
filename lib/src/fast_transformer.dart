@@ -21,7 +21,7 @@ class FastTransformer implements Transformer {
   /// Terminates the underlying PHP process: stops the server from accepting new connections.
   /// It does nothing if the server is already closed.
   @override
-  Future close() async {
+  Future<Null> close() async {
     if (!listening) return;
     _phpServer['process'].kill();
     _phpServer = null;
