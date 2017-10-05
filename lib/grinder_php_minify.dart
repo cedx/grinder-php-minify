@@ -14,9 +14,6 @@ part 'src/minifier.dart';
 part 'src/safe_transformer.dart';
 part 'src/transformer.dart';
 
-/// The path of the PHP executable found on the system path.
-String _systemExecutable = '';
-
 /// Minifies the PHP files of the specified [source] directory and saves the resulting output to the specified [destination] directory.
 ///
 /// The processing can be customized using the following options:
@@ -26,10 +23,8 @@ String _systemExecutable = '';
 /// - [recurse]: a value indicating whether to process the directory recursively.
 /// - [silent]: a value indicating whether to silent the plug-in output.
 Future phpMinify(source, destination, {binary, String mode = 'safe', String pattern = '*.php', bool recurse = true, bool silent = false}) async {
-  if (binary == null && _systemExecutable.isEmpty) _systemExecutable = await where('php');
-
   var minifier = new Minifier(
-    binary: binary != null ? new FilePath(binary).path : _systemExecutable,
+    binary: binary != null ? new FilePath(binary).path : await where('php'),
     mode: mode,
     silent: silent
   );
