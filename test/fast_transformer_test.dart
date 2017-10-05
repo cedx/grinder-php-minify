@@ -32,6 +32,20 @@ void main() => group('FastTransformer', () {
     });
   });
 
+  group('.listening', () {
+    var transformer = new FastTransformer();
+
+    test('should return whether the server is listening', () async {
+      expect(transformer.listening, isFalse);
+
+      await transformer.listen();
+      expect(transformer.listening, isTrue);
+
+      await transformer.close();
+      expect(transformer.listening, isFalse);
+    });
+  });
+
   group('.transform()', () {
     var script = getFile('test/fixtures/sample.php');
     var transformer = new FastTransformer();
