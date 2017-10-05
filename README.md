@@ -32,7 +32,7 @@ import 'package:grinder_php_minify/grinder_php_minify.dart' show phpMinify;
 ## Usage
 The plug-in provides a single function, `phpMinify()`, that takes a [PHP](https://secure.php.net) script as input, and removes the comments and whitespace in this file by applying the [`php_strip_whitespace()`](https://secure.php.net/manual/en/function.php-strip-whitespace.php) function on its contents.
 
-The resulting string is saved into a given output directory:
+The resulting string is saved to a given output directory:
 
 ```dart
 import 'dart:async';
@@ -43,7 +43,7 @@ import 'package:grinder_php_minify/grinder_php_minify.dart' show phpMinify;
 Future compressPhp() => phpMinify('path/to/src/file.php', 'path/to/out'); 
 ```
 
-The `phpMinify()` function can also operate recursively on the contents of a directory containing PHP scripts:
+The `phpMinify()` function can also recursively operate on the contents of a directory containing PHP scripts:
 
 ```dart
 @Task('Compress the PHP scripts from a given directory')
