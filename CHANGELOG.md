@@ -6,6 +6,7 @@ This file contains highlights of what changes on each version of the [Grinder-PH
 - Breaking change: raised the required [Dart](https://www.dartlang.org) version.
 - Breaking change: removed the `binary` and `mode` properties from the `Minifier` class.
 - Breaking change: the `Minifier.transformer` property is now `final`.
+- Added a factory constructor to the `Transformer` class.
 - Changed licensing for the [MIT License](https://opensource.org/licenses/MIT).
 - Updated the package dependencies.
 
