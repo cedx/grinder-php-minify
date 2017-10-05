@@ -6,14 +6,14 @@ class FastTransformer implements Transformer {
   /// The default address that the server is listening on.
   static final InternetAddress defaultAddress = InternetAddress.LOOPBACK_IP_V4;
 
-  /// The instance providing access to the minifier settings.
-  final Minifier _minifier;
+  /// The path to the PHP executable.
+  final String _executable;
 
   /// The underlying PHP process.
   Map<String, dynamic> _phpServer;
 
   /// Creates a new fast transformer.
-  FastTransformer(this._minifier);
+  FastTransformer([this._executable = 'php']);
 
   /// Value indicating whether the PHP process is currently listening.
   bool get listening => _phpServer != null;
@@ -39,7 +39,7 @@ class FastTransformer implements Transformer {
     _phpServer = {
       'address': address,
       'port': port,
-      'process': await Process.start(_minifier.binary, ['-S', '$address:$port', '-t', webroot.toFilePath()])
+      'process': await Process.start(_executable, ['-S', '$address:$port', '-t', webroot.toFilePath()])
     };
 
     return new Future.delayed(const Duration(seconds: 1), () => port);

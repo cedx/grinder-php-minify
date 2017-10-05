@@ -2,6 +2,7 @@
 This file contains highlights of what changes on each version of the [Grinder-PHP-Minify](https://github.com/cedx/grinder-php-minify) package.
 
 ## Version [1.0.0](https://github.com/cedx/grinder-php-minify/compare/v0.2.0...v1.0.0)
+- Breaking change: changed the signature of the `FastTransformer` and `SafeTransformer` constructors.
 - Breaking change: raised the required [Dart](https://www.dartlang.org) version.
 - Changed licensing for the [MIT License](https://opensource.org/licenses/MIT).
 - Updated the package dependencies.
