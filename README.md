@@ -85,10 +85,11 @@ php_minify.compressFile('path/to/src/file.php', 'path/to/out/file.php', silent: 
 ## Directory options
 These options are specific to the `compress()` function.
 
-### `String pattern`
-When processing a directory, a filter is applied on the names of the processed files to determine whether they are PHP scripts. A filename pattern is used to match the eligible PHP scripts.
+### `String pattern = "*.php"`
+When processing a directory, a filter is applied on the names of the processed files to determine whether they are PHP scripts.
 
-By default, it's set to `"*.php"`. You can change this pattern to select a different set of PHP scripts:
+The filename pattern `"*.php"` is used to match the eligible PHP scripts.
+You can change this pattern to select a different set of files:
 
 ```dart
 php_minify.compress('path/to/src', 'path/to/out', pattern: '*.inc.php7');

@@ -1,8 +1,5 @@
 <?php
-/**
- * Implementation of the `grinder\php_minify\Application` class.
- */
-namespace grinder\php_minify;
+namespace Grinder\PhpMinify;
 
 /**
  * An HTTP server that strip comments and whitespace from the files specified in client requests.
