@@ -3,8 +3,7 @@ part of grinder_php_minify;
 /// Interface providing a mechanism for transforming input and producing output.
 abstract class Transformer {
 
-  /// Creates a new transformer from the specified [mode],
-  /// optionnaly using the specified PHP [executable].
+  /// Creates a new transformer from the specified [mode], optionaly using the given PHP [executable].
   factory Transformer(String mode, {String executable = 'php'}) =>
     mode.toLowerCase() == 'fast' ? new FastTransformer(executable) : new SafeTransformer(executable);
 
