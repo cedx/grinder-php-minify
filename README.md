@@ -26,32 +26,31 @@ $ pub get
 Once the plug-in has been installed, it may be enabled inside your `grind.dart` file:
 
 ```dart
-import 'package:grinder_php_minify/grinder_php_minify.dart' as php_minify;
+import 'package:grinder_php_minify/grinder_php_minify.dart' show phpMinify;
 ```
 
 ## Usage
-The plug-in takes a list of [PHP](https://secure.php.net) scripts as input, and removes the comments and whitespace in these files by applying the [`php_strip_whitespace()`](https://secure.php.net/manual/en/function.php-strip-whitespace.php) function on their contents.
+The plug-in provides a single function, `phpMinify()`, that takes a [PHP](https://secure.php.net) script as input, and removes the comments and whitespace in this file by applying the [`php_strip_whitespace()`](https://secure.php.net/manual/en/function.php-strip-whitespace.php) function on its contents.
 
-Two functions are dedicated to this feature:
-- `compress()`: minifies the PHP files of a given source directory and saves the resulting output to a destination directory.
-- `compressFile()`: minifies a single PHP source file and saves the resulting output to a given destination file.
-
-Their usage is the same, only their options differ:
+The resulting string is saved into a given output directory:
 
 ```dart
 import 'dart:async';
 import 'package:grinder/grinder.dart';
-import 'package:grinder_php_minify/grinder_php_minify.dart' as php_minify;
+import 'package:grinder_php_minify/grinder_php_minify.dart' show phpMinify;
 
-@Task('Compress the PHP scripts from a given directory')
-Future phpDirectory() => php_minify.compress('path/to/src', 'path/to/out');
-
-@Task('Compress a given PHP script')
-Future phpFile() => php_minify.compressFile('path/to/src/file.php', 'path/to/out/file.php');
+@Task('Compress a given PHP script') 
+Future compressPhp() => phpMinify('path/to/src/file.php', 'path/to/out'); 
 ```
 
-## Common options
-These options are shared by the two functions: `compress()` and `compressFile()`.
+The `phpMinify()` function can also operate recursively on the contents of a directory containing PHP scripts:
+
+```dart
+@Task('Compress the PHP scripts from a given directory')
+Future compressPhp() => phpMinify('path/to/src', 'path/to/out', pattern: '*.php');
+```
+
+## Options
 
 ### `String binary = "php"`
 The plug-in relies on the availability of the [PHP](https://secure.php.net) executable on the target system. By default, the plug-in will use the `php` binary found on the system path.
@@ -59,8 +58,7 @@ The plug-in relies on the availability of the [PHP](https://secure.php.net) exec
 If the plug-in cannot find the default `php` binary, or if you want to use a different one, you can provide the path to the `php` executable by using the `binary` option:
 
 ```dart
-php_minify.compress('path/to/src', 'path/to/out', binary: r'C:\Program Files\PHP\php.exe');
-php_minify.compressFile('path/to/src/file.php', 'path/to/out/file.php', binary: '/usr/local/bin/php7');
+phpMinify('path/to/src', 'path/to/out', binary: r'C:\Program Files\PHP\php.exe');
 ```
 
 ### `String mode = "safe"`
@@ -70,36 +68,31 @@ The plug-in can work in two manners, which can be selected using the `mode` opti
 - the `fast` mode: as its name implies, this mode is very fast, but it is not very reliable. It spawns a PHP web server that processes the input files, but on some systems this fails. This mode requires a [PHP](https://secure.php.net) runtime version **7.0 or later**.
 
 ```dart
-php_minify.compress('path/to/src', 'path/to/out', mode: 'fast');
-php_minify.compressFile('path/to/src/file.php', 'path/to/out/file.php', mode: 'fast');
+phpMinify('path/to/src', 'path/to/out', mode: 'fast');
 ```
-
-### `bool silent = false`
-By default, the plug-in prints to the standard output the paths of the minified scripts. You can disable this output by setting the `silent` option to `true`.
-
-```dart
-php_minify.compress('path/to/src', 'path/to/out', silent: true);
-php_minify.compressFile('path/to/src/file.php', 'path/to/out/file.php', silent: true);
-```
-
-## Directory options
-These options are specific to the `compress()` function.
 
 ### `String pattern = "*.php"`
 When processing a directory, a filter is applied on the names of the processed files to determine whether they are PHP scripts.
 
-The filename pattern `"*.php"` is used to match the eligible PHP scripts.
+By default, the filename pattern `"*.php"` is used to match the eligible PHP scripts.
 You can change this pattern to select a different set of files:
 
 ```dart
-php_minify.compress('path/to/src', 'path/to/out', pattern: '*.inc.php7');
+phpMinify('path/to/src', 'path/to/out', pattern: '*.inc.php7');
 ```
 
 ### `bool recurse = true`
 By default, a source directory is scanned recursively. You can force the minifier to only process the files located at the root of the source directory by setting the `recurse` option to `false`:
 
 ```dart
-php_minify.compress('path/to/src', 'path/to/out', recurse: false);
+phpMinify('path/to/src', 'path/to/out', recurse: false);
+```
+
+### `bool silent = false`
+By default, the plug-in prints to the standard output the paths of the minified scripts. You can disable this output by setting the `silent` option to `true`.
+
+```dart
+phpMinify('path/to/src', 'path/to/out', silent: true);
 ```
 
 ## See also
