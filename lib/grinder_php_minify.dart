@@ -32,6 +32,6 @@ Future phpMinify(source, destination, {binary, String mode = 'safe', String patt
   var input = new FilePath(source);
   var output = new FilePath(destination).asDirectory;
   return input.isFile ?
-  minifier.processFile(input.asFile, joinFile(output, [input.name])) :
-  minifier.processDirectory(input.asDirectory, output, pattern: pattern, recurse: recurse);
+    minifier.processFile(input.asFile, joinFile(output, [input.name])) :
+    minifier.processDirectory(input.asDirectory, output, pattern: pattern, recurse: recurse);
 }
