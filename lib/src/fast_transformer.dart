@@ -9,40 +9,36 @@ class FastTransformer implements Transformer {
   /// The path to the PHP executable.
   final String _executable;
 
+  /// The port that the PHP process is listening on.
+  int _port = -1;
+
   /// The underlying PHP process.
-  Map<String, dynamic> _phpServer;
+  Process _process;
 
   /// Creates a new fast transformer.
   FastTransformer([this._executable = 'php']);
 
   /// Value indicating whether the PHP process is currently listening.
-  bool get listening => _phpServer != null;
+  bool get listening => _process != null;
 
   /// Terminates the underlying PHP process: stops the server from accepting new connections.
   /// It does nothing if the server is already closed.
   @override
   Future<Null> close() async {
     if (!listening) return;
-    _phpServer['process'].kill();
-    _phpServer = null;
+    _process.kill();
+    _process = null;
   }
 
   /// Starts the underlying PHP process: begins accepting connections. Returns the port used by the PHP process.
   /// It does nothing if the server is already started.
   Future<int> listen() async {
-    if (listening) return _phpServer['port'];
+    if (listening) return _port;
 
-    var address = FastTransformer.defaultAddress.host;
-    var port = await _getPort();
     var webroot = (await Isolate.resolvePackageUri(Uri.parse('package:grinder_php_minify/'))).resolve('../web');
-
-    _phpServer = {
-      'address': address,
-      'port': port,
-      'process': await Process.start(_executable, ['-S', '$address:$port', '-t', webroot.toFilePath()])
-    };
-
-    return new Future.delayed(const Duration(seconds: 1), () => port);
+    _port = await _getPort();
+    _process = await Process.start(_executable, ['-S', '${FastTransformer.defaultAddress.host}:$_port', '-t', webroot.toFilePath()]);
+    return new Future.delayed(const Duration(seconds: 1), () => _port);
   }
 
   /// Processes the specified PHP [script] and returns its contents minified.
@@ -50,7 +46,7 @@ class FastTransformer implements Transformer {
   Future<String> transform(File script) async {
     var file = Uri.encodeComponent(script.path);
     await listen();
-    return http.read('http://${_phpServer['address']}:${_phpServer['port']}/index.php?file=$file');
+    return http.read('http://${FastTransformer.defaultAddress.host}:$_port/index.php?file=$file');
   }
 
   /// Gets an ephemeral port chosen by the system.
