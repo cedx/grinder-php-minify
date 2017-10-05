@@ -6,6 +6,7 @@ import 'safe_transformer_test.dart' as safe_transformer_test;
 /// Tests all the features of the package.
 void main() {
   fast_transformer_test.main();
+  functions_test.main();
   minifier_test.main();
   safe_transformer_test.main();
 }
