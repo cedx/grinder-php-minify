@@ -4,31 +4,9 @@ import 'package:test/test.dart';
 
 /// Tests the features of the [Minifier] class.
 void main() => group('Minifier', () {
-  group('.mode', () {
-    test('should be `safe` if the underlying transformer is a `SafeTransformer` one', () {
-      var minifier = new Minifier();
-      minifier.transformer = new SafeTransformer(minifier);
-      expect(minifier.mode, equals('safe'));
-    });
-
-    test('should be `fast` if the underlying transformer is a `FastTransformer` one', () {
-      var minifier = new Minifier();
-      minifier.transformer = new FastTransformer(minifier);
-      expect(minifier.mode, equals('fast'));
-    });
-
-    test('should change the underlying transformer on value update', () {
-      var minifier = new Minifier()..mode = 'fast';
-      expect(minifier.transformer, const isInstanceOf<FastTransformer>());
-
-      minifier.mode = 'safe';
-      expect(minifier.transformer, const isInstanceOf<SafeTransformer>());
-    });
-  });
-
   group('.transformer', () {
     var script = getFile('test/fixtures/sample.php');
-    var minifier = new Minifier()..silent = true;
+    var minifier = new Minifier(silent: true);
     tearDownAll(() => minifier.transformer.close());
 
     test('should remove the inline comments', () async {
