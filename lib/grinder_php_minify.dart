@@ -23,9 +23,11 @@ part 'src/transformer.dart';
 /// - [recurse]: a value indicating whether to process the directory recursively.
 /// - [silent]: a value indicating whether to silent the plug-in output.
 Future compress(source, destination, {binary, String mode = 'safe', String pattern = '*.php', bool recurse = true, bool silent = false}) async {
-  var minifier = new Minifier(binary != null ? new FilePath(binary).path : await where('php'))
-    ..mode = mode
-    ..silent = silent;
+  var minifier = new Minifier(
+    binary: binary != null ? new FilePath(binary).path : await where('php'),
+    mode: mode,
+    silent: silent
+  );
 
   return minifier.processDirectory(
     new FilePath(source).asDirectory,
@@ -42,9 +44,11 @@ Future compress(source, destination, {binary, String mode = 'safe', String patte
 /// - [mode]: the transformation type.
 /// - [silent]: a value indicating whether to silent the plug-in output.
 Future compressFile(source, destination, {binary, String mode = 'safe', bool silent = false}) async {
-  var minifier = new Minifier(binary != null ? new FilePath(binary).path : await where('php'))
-    ..mode = mode
-    ..silent = silent;
+  var minifier = new Minifier(
+    binary: binary != null ? new FilePath(binary).path : await where('php'),
+    mode: mode,
+    silent: silent
+  );
 
   return minifier.processFile(
     new FilePath(source).asFile,

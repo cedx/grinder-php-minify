@@ -7,19 +7,11 @@ class Minifier {
   Minifier({String binary = 'php', String mode = 'safe', this.silent = false}):
     transformer = new Transformer(mode, executable: binary);
 
-  /// The transformation type.
-  String mode;
-
-  /*
-  String get mode => transformer is FastTransformer ? 'fast' : 'safe';
-  set mode(String value) => transformer = value == 'fast' ? new FastTransformer(this) : new SafeTransformer(this);
-  */
-
   /// Value indicating whether to silent the plug-in output.
-  bool silent = false;
+  bool silent;
 
   /// The instance used to process the PHP code.
-  Transformer transformer;
+  final Transformer transformer;
 
   /// Minifies the PHP files of the specified [source] directory and saves the resulting output to the specified [destination] directory.
   ///

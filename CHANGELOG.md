@@ -4,7 +4,8 @@ This file contains highlights of what changes on each version of the [Grinder-PH
 ## Version [1.0.0](https://github.com/cedx/grinder-php-minify/compare/v0.2.0...v1.0.0)
 - Breaking change: changed the signature of most class constructors.
 - Breaking change: raised the required [Dart](https://www.dartlang.org) version.
-- Breaking change: removed the `Minifier.binary` property.
+- Breaking change: removed the `binary` and `mode` properties from the `Minifier` class.
+- Breaking change: the `Minifier.transformer` property is now `final`.
 - Changed licensing for the [MIT License](https://opensource.org/licenses/MIT).
 - Updated the package dependencies.
 
