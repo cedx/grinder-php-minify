@@ -6,9 +6,13 @@ import 'package:test/test.dart';
 void main() => group('SafeTransformer', () {
   group('.close()', () {
     var transformer = new SafeTransformer();
-    tearDownAll(() => transformer.close());
 
     test('should complete without any error', () {
+      expect(transformer.close(), completes);
+    });
+
+    test('should be callable multiple times', () {
+      expect(transformer.close(), completes);
       expect(transformer.close(), completes);
     });
   });

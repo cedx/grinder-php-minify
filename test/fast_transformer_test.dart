@@ -6,13 +6,14 @@ import 'package:test/test.dart';
 void main() => group('FastTransformer', () {
   group('.close()', () {
     var transformer = new FastTransformer();
-    tearDownAll(() => transformer.close());
 
     test('should complete without any error', () async {
-      var transformer = new FastTransformer();
-      expect(transformer.close(), completes);
-
       await transformer.listen();
+      expect(transformer.close(), completes);
+    });
+
+    test('should be callable multiple times', () {
+      expect(transformer.close(), completes);
       expect(transformer.close(), completes);
     });
   });
@@ -22,6 +23,11 @@ void main() => group('FastTransformer', () {
     tearDownAll(() => transformer.close());
 
     test('should complete without any error', () {
+      expect(transformer.listen(), completes);
+    });
+
+    test('should be callable multiple times', () {
+      expect(transformer.listen(), completes);
       expect(transformer.listen(), completes);
     });
   });
