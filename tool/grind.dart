@@ -32,7 +32,7 @@ void fix() => DartFmt.format(_sources);
 void lint() => Analyzer.analyze(_sources);
 
 /// Runs all the test suites.
-@Task('Run the tests')
+@DefaultTask('Run the tests')
 Future test() async {
   delete(getDir('var/test'));
 
