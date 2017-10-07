@@ -17,7 +17,7 @@ class Minifier {
   ///
   /// Uses the specified file [pattern] to match the eligible PHP scripts.
   /// A [recurse] value indicates whether to process the directory recursively.
-  Future processDirectory(Directory source, Directory destination, {String pattern = '*.php', bool recurse: true}) async {
+  Future processDirectory(Directory source, Directory destination, {String pattern = '*.php', bool recurse: true}) {
     var sources = new FileSet.fromDir(source, pattern: pattern, recurse: recurse);
     return _processFiles(sources.files.map((src) {
       var dest = joinFile(destination, [path.relative(src.path, from: source.path)]);
@@ -26,7 +26,7 @@ class Minifier {
   }
 
   /// Minifies the specified PHP [source] file and saves the resulting output to the specified [destination] file.
-  Future processFile(File source, File destination) async => _processFiles([
+  Future processFile(File source, File destination) => _processFiles([
     [source, destination]
   ]);
 
