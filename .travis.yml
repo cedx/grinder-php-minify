@@ -2,6 +2,7 @@ dist: trusty
 language: php
 sudo: false
 
+env: DART_ENV="test"
 php: '7.1'
 notifications:
   email: false
