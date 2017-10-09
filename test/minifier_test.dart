@@ -7,11 +7,7 @@ void main() => group('Minifier', () {
   group('.processDirectory()', () {
     var minifier = new Minifier(silent: true);
     var testDir = getDir('var/test/processDirectory');
-
-    tearDownAll(() {
-      delete(testDir);
-      return minifier.transformer.close();
-    });
+    tearDownAll(minifier.transformer.close);
 
     test('should remove the comments and whitespace from the scripts of a directory', () async {
       var output = joinFile(testDir, ['sample.php']);
@@ -28,11 +24,7 @@ void main() => group('Minifier', () {
   group('.processFile()', () {
     var minifier = new Minifier(silent: true);
     var testDir = getDir('var/test/processFile');
-
-    tearDownAll(() {
-      delete(testDir);
-      return minifier.transformer.close();
-    });
+    tearDownAll(minifier.transformer.close);
 
     test('should remove the comments and whitespace from a file', () async {
       var output = joinFile(testDir, ['sample.php']);

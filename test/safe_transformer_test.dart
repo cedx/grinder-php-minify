@@ -20,7 +20,7 @@ void main() => group('SafeTransformer', () {
   group('.transform()', () {
     var script = getFile('test/fixtures/sample.php');
     var transformer = new SafeTransformer();
-    tearDownAll(() => transformer.close());
+    tearDownAll(transformer.close);
 
     test('should remove the inline comments', () async {
       expect(await transformer.transform(script), contains("<?= 'Hello World!' ?>"));

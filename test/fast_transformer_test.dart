@@ -20,7 +20,7 @@ void main() => group('FastTransformer', () {
 
   group('.listen()', () {
     var transformer = new FastTransformer();
-    tearDownAll(() => transformer.close());
+    tearDownAll(transformer.close);
 
     test('should complete without any error', () {
       expect(transformer.listen(), completes);
@@ -49,7 +49,7 @@ void main() => group('FastTransformer', () {
   group('.transform()', () {
     var script = getFile('test/fixtures/sample.php');
     var transformer = new FastTransformer();
-    tearDownAll(() => transformer.close());
+    tearDownAll(transformer.close);
 
     test('should remove the inline comments', () async {
       expect(await transformer.transform(script), contains("<?= 'Hello World!' ?>"));

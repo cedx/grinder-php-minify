@@ -6,7 +6,6 @@ import 'package:test/test.dart';
 void main() => group('phpMinify()', () {
   var testDir = getDir('var/test/phpMinify');
   var output = joinFile(testDir, ['sample.php']);
-  tearDown(() => delete(testDir));
 
   test('should remove the comments and whitespace from the scripts of a directory', () async {
     await phpMinify('test/fixtures', testDir.path, silent: true);
