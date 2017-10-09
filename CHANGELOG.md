@@ -1,6 +1,9 @@
 # Changelog
 This file contains highlights of what changes on each version of the [Grinder-PHP-Minify](https://github.com/cedx/grinder-php-minify) package.
 
+## Version [1.0.1](https://github.com/cedx/grinder-php-minify/compare/v1.0.0...v1.0.1)
+- Fixed a bug with relative file paths.
+
 ## Version [1.0.0](https://github.com/cedx/grinder-php-minify/compare/v0.2.0...v1.0.0)
 - Breaking change: changed the signature of most class constructors.
 - Breaking change: merged the `compress()` and `compressFile()` functions into the `phpMinify()` function.

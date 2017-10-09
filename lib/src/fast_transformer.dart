@@ -35,18 +35,18 @@ class FastTransformer implements Transformer {
   Future<int> listen() async {
     if (listening) return _port;
 
-    var webroot = (await Isolate.resolvePackageUri(Uri.parse('package:grinder_php_minify/'))).resolve('../web');
+    var server = await Isolate.resolvePackageUri(Uri.parse('package:grinder_php_minify/php/'));
     _port = await _getPort();
-    _process = await Process.start(_executable, ['-S', '${FastTransformer.defaultAddress.host}:$_port', '-t', webroot.toFilePath()]);
+    _process = await Process.start(_executable, ['-S', '${FastTransformer.defaultAddress.host}:$_port', '-t', server.toFilePath()]);
     return new Future.delayed(const Duration(seconds: 1), () => _port);
   }
 
   /// Processes the specified PHP [script] and returns its contents minified.
   @override
   Future<String> transform(File script) async {
-    var file = Uri.encodeComponent(script.path);
+    var file = Uri.encodeComponent(script.absolute.path);
     await listen();
-    return http.read('http://${FastTransformer.defaultAddress.host}:$_port/index.php?file=$file');
+    return http.read('http://${FastTransformer.defaultAddress.host}:$_port/server.php?file=$file');
   }
 
   /// Gets an ephemeral port chosen by the system.
