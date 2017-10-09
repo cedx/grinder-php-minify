@@ -9,7 +9,10 @@ Future main(List<String> args) => grind(args);
 
 /// Deletes all generated files and reset any saved state.
 @Task('Delete the generated files')
-void clean() => defaultClean();
+void clean() {
+  defaultClean();
+  new FileSet.fromDir(getDir('var'), pattern: '*.{info,json}').files.forEach(delete);
+}
 
 /// Uploads the code coverage report.
 @Task('Upload the code coverage')
@@ -34,13 +37,17 @@ void lint() => Analyzer.analyze(_sources);
 /// Runs all the test suites.
 @DefaultTask('Run the tests')
 Future test() async {
-  delete(getDir('var/test'));
-
   await Future.wait([
     Dart.runAsync('test/all.dart', vmArgs: const ['--enable-vm-service', '--pause-isolates-on-exit']),
     Pub.runAsync('coverage', script: 'collect_coverage', arguments: const ['--out=var/coverage.json', '--resume-isolates', '--wait-paused'])
   ]);
 
-  var args = const ['--in=var/coverage.json', '--lcov', '--out=var/lcov.info', '--packages=.packages', '--report-on=lib'];
-  return Pub.runAsync('coverage', script: 'format_coverage', arguments: args);
+  delete(getDir('var/test'));
+  return Pub.runAsync('coverage', script: 'format_coverage', arguments: const [
+    '--in=var/coverage.json',
+    '--lcov',
+    '--out=var/lcov.info',
+    '--packages=.packages',
+    '--report-on=lib'
+  ]);
 }
