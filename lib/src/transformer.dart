@@ -4,8 +4,8 @@ part of grinder_php_minify;
 abstract class Transformer {
 
   /// Creates a new transformer from the specified [mode], optionaly using the given PHP [executable].
-  factory Transformer(String mode, {String executable = 'php'}) =>
-    mode.toLowerCase() == 'fast' ? new FastTransformer(executable) : new SafeTransformer(executable);
+  factory Transformer(TransformMode mode, {String executable = 'php'}) =>
+    mode == TransformMode.fast ? new FastTransformer(executable) : new SafeTransformer(executable);
 
   /// Closes this transformer and releases any resources associated with it.
   Future<Null> close();

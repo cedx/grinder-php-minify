@@ -4,7 +4,7 @@ part of grinder_php_minify;
 class Minifier {
 
   /// Creates a new minifier from the specified PHP [binary].
-  Minifier({String binary = 'php', String mode = 'safe', this.silent = false}):
+  Minifier({String binary = 'php', TransformMode mode = TransformMode.safe, this.silent = false}):
     transformer = new Transformer(mode, executable: binary);
 
   /// Value indicating whether to silent the plug-in output.
