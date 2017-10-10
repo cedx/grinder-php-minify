@@ -1,6 +1,8 @@
 # Changelog
 This file contains highlights of what changes on each version of the [Grinder-PHP-Minify](https://github.com/cedx/grinder-php-minify) package.
 
+## Version [2.0.0](https://github.com/cedx/grinder-php-minify/compare/v1.0.1...v2.0.0)
+
 ## Version [1.0.1](https://github.com/cedx/grinder-php-minify/compare/v1.0.0...v1.0.1)
 - Fixed a bug with relative file paths.
 
