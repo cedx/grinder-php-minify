@@ -47,10 +47,13 @@ The `phpMinify()` function can also recursively operate on the contents of a dir
 
 ```dart
 @Task('Compress the PHP scripts from a given directory')
-Future compressPhp() => phpMinify('path/to/src', 'path/to/out', pattern: '*.php');
+Future compressPhp() => phpMinify('path/to/src', 'path/to/out');
 ```
 
 ## Options
+
+### `Directory base = Directory.current`
+TODO
 
 ### `String binary = "php"`
 The plug-in relies on the availability of the [PHP](https://secure.php.net) executable on the target system. By default, the plug-in will use the `php` binary found on the system path.
@@ -61,31 +64,14 @@ If the plug-in cannot find the default `php` binary, or if you want to use a dif
 phpMinify('path/to/src', 'path/to/out', binary: r'C:\Program Files\PHP\php.exe');
 ```
 
-### `String mode = "safe"`
+### `TransformMode mode = TransformMode.safe`
 The plug-in can work in two manners, which can be selected using the `mode` option:
 
 - the `safe` mode: as its name implies, this mode is very reliable. But it is also very slow as it spawns a new PHP process for every file to be processed. This is the default mode.
 - the `fast` mode: as its name implies, this mode is very fast, but it is not very reliable. It spawns a PHP web server that processes the input files, but on some systems this fails. This mode requires a [PHP](https://secure.php.net) runtime version **7.0 or later**.
 
 ```dart
-phpMinify('path/to/src', 'path/to/out', mode: 'fast');
-```
-
-### `String pattern = "*.php"`
-When processing a directory, a filter is applied on the names of the processed files to determine whether they are PHP scripts.
-
-By default, the filename pattern `"*.php"` is used to match the eligible PHP scripts.
-You can change this pattern to select a different set of files:
-
-```dart
-phpMinify('path/to/src', 'path/to/out', pattern: '*.inc.php7');
-```
-
-### `bool recurse = true`
-By default, a source directory is scanned recursively. You can force the minifier to only process the files located at the root of the source directory by setting the `recurse` option to `false`:
-
-```dart
-phpMinify('path/to/src', 'path/to/out', recurse: false);
+phpMinify('path/to/src', 'path/to/out', mode: TransformMode.fast);
 ```
 
 ### `bool silent = false`

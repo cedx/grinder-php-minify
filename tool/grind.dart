@@ -1,9 +1,5 @@
 import 'dart:async';
-import 'dart:io';
 import 'package:grinder/grinder.dart';
-
-/// The list of source directories.
-final Iterable<Directory> _sources = sourceDirs.where((dir) => dir.existsSync());
 
 /// Starts the build system.
 Future main(List<String> args) => grind(args);
@@ -29,11 +25,11 @@ void doc() {
 
 /// Fixes the coding standards issues.
 @Task('Fix the coding issues')
-void fix() => DartFmt.format(_sources);
+void fix() => DartFmt.format(existingSourceDirs);
 
 /// Performs static analysis of source code.
 @Task('Perform the static analysis')
-void lint() => Analyzer.analyze(_sources);
+void lint() => Analyzer.analyze(existingSourceDirs);
 
 /// Runs all the test suites.
 @DefaultTask('Run the tests')
@@ -44,11 +40,11 @@ Future test() async {
   ]);
 
   delete(getDir('var/test'));
-  return Pub.runAsync('coverage', script: 'format_coverage', arguments: const [
+  return Pub.runAsync('coverage', script: 'format_coverage', arguments: [
     '--in=var/coverage.json',
     '--lcov',
     '--out=var/lcov.info',
     '--packages=.packages',
-    '--report-on=lib'
+    '--report-on=${libDir.path}'
   ]);
 }

@@ -10,7 +10,7 @@ void main() => group('Minifier', () {
     tearDownAll(minifier.transformer.close);
 
     test('should remove the comments and whitespace from the scripts of a directory', () async {
-      var output = joinFile(testDir, ['sample.php']);
+      var output = joinFile(testDir, const ['sample.php']);
       await minifier.processDirectory(getDir('test/fixtures'), testDir);
       expect(await output.readAsString(), allOf(
         contains("<?= 'Hello World!' ?>"),
@@ -27,7 +27,7 @@ void main() => group('Minifier', () {
     tearDownAll(minifier.transformer.close);
 
     test('should remove the comments and whitespace from a file', () async {
-      var output = joinFile(testDir, ['sample.php']);
+      var output = joinFile(testDir, const ['sample.php']);
       await minifier.processFile(getFile('test/fixtures/sample.php'), output);
       expect(await output.readAsString(), allOf(
         contains("<?= 'Hello World!' ?>"),

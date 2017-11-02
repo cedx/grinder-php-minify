@@ -13,29 +13,16 @@ class Minifier {
   /// The instance used to process the PHP code.
   final Transformer transformer;
 
-  /// Minifies the PHP files of the specified [source] directory and saves the resulting output to the specified [destination] directory.
-  ///
-  /// Uses the specified file [pattern] to match the eligible PHP scripts.
-  /// A [recurse] value indicates whether to process the directory recursively.
-  Future processDirectory(Directory source, Directory destination, {String pattern = '*.php', bool recurse: true}) {
-    var sources = new FileSet.fromDir(source, pattern: pattern, recurse: recurse);
-    return _processFiles(sources.files.map((src) {
-      var dest = joinFile(destination, [path.relative(src.path, from: source.path)]);
-      return [src, dest];
-    }));
-  }
+  /// Minifies the given set of PHP [source] files and saves the resulting output to the specified [destination] directory.
+  Future compress(FileSet source, Directory destination, {Directory base}) async {
+    base ??= Directory.current;
 
-  /// Minifies the specified PHP [source] file and saves the resulting output to the specified [destination] file.
-  Future processFile(File source, File destination) => _processFiles([
-    [source, destination]
-  ]);
+    for (var file in source.files) {
+      if (!silent) log('minifying ${file.path}');
 
-  /// Minifies the specified list of PHP [files], provided as source-destination pairs.
-  Future _processFiles(Iterable<List<File>> files) async {
-    for (var pair in files) {
-      if (!silent) log('Minifying: ${pair.first.path}');
-      await pair.last.parent.create(recursive: true);
-      await pair.last.writeAsString(await transformer.transform(pair.first));
+      var output = joinFile(destination, [path.relative(file.path, from: base.path)]);
+      await output.parent.create(recursive: true);
+      await output.writeAsString(await transformer.transform(file));
     }
 
     return transformer.close();

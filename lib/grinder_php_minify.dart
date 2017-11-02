@@ -15,15 +15,13 @@ part 'src/safe_transformer.dart';
 part 'src/transform_mode.dart';
 part 'src/transformer.dart';
 
-/// Minifies the PHP files of the specified [source] directory and saves the resulting output to the specified [destination] directory.
+/// Minifies the given set of PHP [source] files and saves the resulting output to the specified [destination] directory.
 ///
 /// The processing can be customized using the following options:
 /// - [binary]: the path to the PHP executable. Defaults to the `php` binary found on the system path.
-/// - [mode]: the transformation type.
-/// - [pattern]: the file pattern used to match the eligible PHP scripts.
-/// - [recurse]: a value indicating whether to process the directory recursively.
+/// - [mode]: the type of transformation applied.
 /// - [silent]: a value indicating whether to silent the plug-in output.
-Future phpMinify(source, destination, {binary, String mode = 'safe', String pattern = '*.php', bool recurse = true, bool silent = false}) async {
+Future phpMinify(FileSet source, Directory destination, {String binary, TransformMode mode = TransformMode.safe, bool silent = false}) async {
   var minifier = new Minifier(
     binary: binary != null ? new FilePath(binary).path : await where('php'),
     mode: mode,
@@ -31,8 +29,7 @@ Future phpMinify(source, destination, {binary, String mode = 'safe', String patt
   );
 
   var input = new FilePath(source);
-  var output = new FilePath(destination).asDirectory;
   return input.isFile ?
-    minifier.processFile(input.asFile, joinFile(output, [input.name])) :
-    minifier.processDirectory(input.asDirectory, output, pattern: pattern, recurse: recurse);
+    minifier.processFile(input.asFile, joinFile(destination, [input.name])) :
+    minifier.processDirectory(input.asDirectory, destination);
 }
