@@ -8,6 +8,7 @@ Future main(List<String> args) => grind(args);
 @Task('Delete the generated files')
 void clean() {
   defaultClean();
+  delete(getDir('var/test'));
   new FileSet.fromDir(getDir('var'), pattern: '*.{info,json}').files.forEach(delete);
 }
 
