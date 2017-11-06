@@ -2,10 +2,11 @@
 This file contains highlights of what changes on each version of the [Grinder-PHP-Minify](https://github.com/cedx/grinder-php-minify) package.
 
 ## Version [2.0.0](https://github.com/cedx/grinder-php-minify/compare/v1.0.1...v2.0.0)
-- Breaking change: changed the signature of the `phpMinify()` function.
-- Breaking change: merged the `processDirectory()` and `processFile()` methods of the `Minifier` class into the `compress()` method.
-- Breaking change: removed the `pattern` and `recurse` options.
-- Added the `base` option.
+- Breaking change: changed the signature of the `Minifier` and `Transformer` constructors.
+- Breaking change: renamed the `Minifier.processDirectory()` method to `compressDirectory`.
+- Breaking change: renamed the `Minifier.processFile()` method to `compressFile`.
+- Breaking change: splitted the `phpMinify()` function into the `compressDirectory()`, `compressFile()` and `compressFiles()` functions.
+- Added the `Minifier.compressFiles()` method.
 - Added the `TransformMode` enumeration.
 
 ## Version [1.0.1](https://github.com/cedx/grinder-php-minify/compare/v1.0.0...v1.0.1)
