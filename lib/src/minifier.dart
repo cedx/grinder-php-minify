@@ -3,7 +3,7 @@ part of grinder_php_minify;
 /// Removes PHP comments and whitespace by applying the ['php_strip_whitespace()'](https://secure.php.net/manual/en/function.php-strip-whitespace.php) function.
 class Minifier {
 
-  /// Creates a new minifier from the specified PHP [binary].
+  /// Creates a new minifier.
   Minifier({String binary = 'php', TransformMode mode = TransformMode.safe, this.silent = false}):
     transformer = new Transformer(mode, executable: binary);
 
