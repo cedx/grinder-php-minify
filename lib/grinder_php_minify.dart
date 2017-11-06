@@ -15,21 +15,31 @@ part 'src/safe_transformer.dart';
 part 'src/transform_mode.dart';
 part 'src/transformer.dart';
 
-/// Minifies the given set of PHP [source] files and saves the resulting output to the specified [destination] directory.
+/// Minifies the PHP files of the specified [source] directory, and optionally saves the resulting output to the specified [destination] directory.
 ///
-/// The processing can be customized using the following options:
-/// - [binary]: the path to the PHP executable. Defaults to the `php` binary found on the system path.
-/// - [mode]: the type of transformation applied.
-/// - [silent]: a value indicating whether to silent the plug-in output.
-Future phpMinify(FileSet source, Directory destination, {String binary, TransformMode mode = TransformMode.safe, bool silent = false}) async {
-  var minifier = new Minifier(
-    binary: binary != null ? new FilePath(binary).path : await where('php'),
-    mode: mode,
-    silent: silent
-  );
+/// Uses the specified file [pattern] to match the eligible PHP scripts.
+/// A [recurse] value indicates whether to process the input directory recursively.
+Future<Null> compressDirectory(source, {destination,
+  String binary, TransformMode mode = TransformMode.safe, String pattern = '*.php', bool recurse: true, bool silent = false
+}) async {
+  var minifier = new Minifier(binary: binary ?? await where('php'), mode: mode, silent: silent);
+  return minifier.compressDirectory(new FilePath(source).asDirectory, new FilePath(destination ??= source).asDirectory);
+}
 
-  var input = new FilePath(source);
-  return input.isFile ?
-    minifier.processFile(input.asFile, joinFile(destination, [input.name])) :
-    minifier.processDirectory(input.asDirectory, destination);
+/// Minifies the specified PHP [source] file, and optionally saves the resulting output to the specified [destination] file.
+Future<Null> compressFile(source, {destination,
+  String binary, TransformMode mode = TransformMode.safe, bool silent = false
+}) async {
+  var minifier = new Minifier(binary: binary ?? await where('php'), mode: mode, silent: silent);
+  return minifier.compressFile(new FilePath(source).asFile, new FilePath(destination ??= source).asFile);
+}
+
+/// Minifies the given set of PHP [sources] and saves the resulting output to the specified [destination] directory.
+/// A [base] path, defaulting to the current working directory, is removed from the target path of the destination files.
+Future<Null> compressFiles(List sources, destination, {String base,
+  String binary, TransformMode mode = TransformMode.safe, bool silent = false
+}) async {
+  var files = sources.map((source) => new FilePath(source).asFile).toList();
+  var minifier = new Minifier(binary: binary ?? await where('php'), mode: mode, silent: silent);
+  return minifier.compressFiles(files, new FilePath(destination).asDirectory, base: base);
 }
