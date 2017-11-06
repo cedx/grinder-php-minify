@@ -2,14 +2,14 @@ import 'package:grinder/grinder.dart';
 import 'package:grinder_php_minify/grinder_php_minify.dart';
 import 'package:test/test.dart';
 
-/// Tests the features of the [Minifier] class.
-void main() => group('Minifier', () {
-  group('.compressDirectory()', () {
-    var testDir = getDir('var/test/Minifier.compressDirectory');
+/// Tests the features of the functions.
+void main() {
+  group('compressDirectory()', () {
+    var testDir = getDir('var/test/compressDirectory');
     var output = joinFile(testDir, const ['sample.php']);
 
     test('should remove the comments and whitespace from the scripts of a directory', () async {
-      await new Minifier(silent: true).compressDirectory(getDir('test/fixtures'), testDir);
+      await compressDirectory('test/fixtures', destination: testDir.path, silent: true);
       expect(await output.readAsString(), allOf(
         contains("<?= 'Hello World!' ?>"),
         contains('namespace dummy; class Dummy'),
@@ -19,12 +19,12 @@ void main() => group('Minifier', () {
     });
   });
 
-  group('.compressFile()', () {
-    var testDir = getDir('var/test/Minifier.compressFile');
+  group('compressFile()', () {
+    var testDir = getDir('var/test/compressFile');
     var output = joinFile(testDir, const ['sample.php']);
 
     test('should remove the comments and whitespace from a file', () async {
-      await new Minifier(silent: true).compressFile(getFile('test/fixtures/sample.php'), output);
+      await compressFile('test/fixtures/sample.php', destination: output.path, silent: true);
       expect(await output.readAsString(), allOf(
         contains("<?= 'Hello World!' ?>"),
         contains('namespace dummy; class Dummy'),
@@ -34,12 +34,12 @@ void main() => group('Minifier', () {
     });
   });
 
-  group('.compressFiles()', () {
-    var testDir = getDir('var/test/Minifier.compressFiles');
+  group('compressFiles()', () {
+    var testDir = getDir('var/test/compressFiles');
     var output = joinFile(testDir, const ['sample.php']);
 
     test('should remove the comments and whitespace from a set of files', () async {
-      await new Minifier(silent: true).compressFiles([getFile('test/fixtures/sample.php')], testDir, base: 'test/fixtures');
+      await compressFiles(const ['test/fixtures/sample.php'], testDir.path, base: 'test/fixtures', silent: true);
       expect(await output.readAsString(), allOf(
         contains("<?= 'Hello World!' ?>"),
         contains('namespace dummy; class Dummy'),
@@ -48,4 +48,4 @@ void main() => group('Minifier', () {
       ));
     });
   });
-});
+}
