@@ -19,8 +19,7 @@ Future<Null> compressFile(source, destination, {String binary, mode = TransformM
 /// A [base] path, defaulting to the current working directory, is removed from the target path of the destination files.
 Future<Null> compressFiles(List sources, destination, {String base, String binary, mode = TransformMode.safe, bool silent = false}) async {
   var minifier = await _createMinifier(binary, mode: mode, silent: silent);
-  var files = sources.map((source) => new FilePath(source).asFile).toList();
-  return minifier.compressFiles(files, new FilePath(destination).asDirectory, base: base);
+  return minifier.compressFiles(sources.map((source) => new FilePath(source).asFile), new FilePath(destination).asDirectory, base: base);
 }
 
 /// Creates a new minifier.

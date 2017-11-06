@@ -30,7 +30,7 @@ class Minifier {
 
   /// Minifies the given set of PHP [sources] and saves the resulting output to the specified [destination] directory.
   /// A [base] path, defaulting to the current working directory, is removed from the target path of the destination files.
-  Future<Null> compressFiles(List<File> sources, Directory destination, {String base}) async {
+  Future<Null> compressFiles(Iterable<File> sources, Directory destination, {String base}) async {
     base ??= Directory.current.path;
     for (var file in sources) await _transform(file, joinFile(destination, [path.relative(file.path, from: base)]));
     return transformer.close();
