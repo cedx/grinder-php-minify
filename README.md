@@ -30,7 +30,7 @@ import 'package:grinder_php_minify/grinder_php_minify.dart' as php_minify;
 ```
 
 ## Usage
-The plug-in provides a set of functions that take a list of [PHP](https://secure.php.net) script as input, and removes the comments and whitespace in this file by applying the [`php_strip_whitespace()`](https://secure.php.net/manual/en/function.php-strip-whitespace.php) function on their contents.
+The plug-in provides a set of functions that take a list of [PHP](https://secure.php.net) scripts as input, and remove the comments and whitespace in this file by applying the [`php_strip_whitespace()`](https://secure.php.net/manual/en/function.php-strip-whitespace.php) function on their contents.
 
 > Whenever a function expects a directory or file parameter, you can specify it as an instance of [`FileSystemEntity`](https://api.dartlang.org/stable/1.24.2/dart-io/FileSystemEntity-class.html) or  as a string (e.g. its path).
 
@@ -46,13 +46,13 @@ import 'package:grinder_php_minify/grinder_php_minify.dart' as php_minify;
 Future compressPhp() => php_minify.compressDirectory('path/to/src', 'path/to/out');
 ```
 
-When the functions processes a directory, a filter is applied on the names of the processed files to determine whether they are PHP scripts. A filename pattern is used to match the eligible PHP scripts, by default it's set to `"*.php"`. You can change this pattern to select a different set of PHP scripts:
+When the function processes a directory, a filter is applied on the names of the processed files to determine whether they are PHP scripts. A filename pattern is used to match the eligible PHP scripts, by default it's set to `"*.php"`. You can change use the `pattern` option to select a different set of PHP scripts:
 
 ```dart
 php_minify.compressDirectory('path/to/src', 'path/to/out', pattern: '*.inc.php7');
 ```
 
-Source directories are scanned recursively. You can force the minifier to only process the files located at the root of the source directory by setting the `recurse` option to `false`:
+The source directories are scanned recursively. You can force the function to only process the files located at the root of the source directory by setting the `recurse` option to `false`:
 
 ```dart
 php_minify.compressDirectory('path/to/src', 'path/to/out', recurse: false);
