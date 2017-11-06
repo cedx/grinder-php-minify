@@ -3,7 +3,7 @@ This file contains highlights of what changes on each version of the [Grinder-PH
 
 ## Version [2.0.0](https://github.com/cedx/grinder-php-minify/compare/v1.0.1...v2.0.0)
 - Breaking change: changed the signature of the `phpMinify()` function.
-- Breaking change: merged the `processDirectory()` and `processFile()` methods of the `Minifier` class into the `compress` method.
+- Breaking change: merged the `processDirectory()` and `processFile()` methods of the `Minifier` class into the `compress()` method.
 - Breaking change: removed the `pattern` and `recurse` options.
 - Added the `base` option.
 - Added the `TransformMode` enumeration.
