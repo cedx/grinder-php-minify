@@ -17,7 +17,7 @@ Future<Null> compressFile(source, destination, {String binary, mode = TransformM
 
 /// Minifies the given set of PHP [sources] and saves the resulting output to the specified [destination] directory.
 /// A [base] path, defaulting to the current working directory, is removed from the target path of the destination files.
-Future<Null> compressFiles(List sources, destination, {String base, String binary, mode = TransformMode.safe, bool silent = false}) async {
+Future<Null> compressFiles(Iterable sources, destination, {String base, String binary, mode = TransformMode.safe, bool silent = false}) async {
   var minifier = await _createMinifier(binary, mode: mode, silent: silent);
   return minifier.compressFiles(sources.map((source) => new FilePath(source).asFile), new FilePath(destination).asDirectory, base: base);
 }
