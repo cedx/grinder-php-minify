@@ -11,8 +11,8 @@ notifications:
   email: false
 
 install:
-- curl --output $HOME/dart-sdk.zip https://storage.googleapis.com/dart-archive/channels/stable/release/latest/sdk/dartsdk-linux-x64-release.zip
-- unzip $HOME/dart-sdk.zip -d $HOME
+- curl --output "$HOME/dart-sdk.zip" https://storage.googleapis.com/dart-archive/channels/stable/release/latest/sdk/dartsdk-linux-x64-release.zip
+- unzip "$HOME/dart-sdk.zip" -d "$HOME"
 - export DART_SDK="$HOME/dart-sdk"
 - export PATH="$DART_SDK/bin:$HOME/.pub-cache/bin:$PATH"
 - dart --version
