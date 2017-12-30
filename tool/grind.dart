@@ -35,17 +35,12 @@ void lint() => Analyzer.analyze(existingSourceDirs);
 /// Runs all the test suites.
 @DefaultTask('Run the tests')
 Future test() async {
+  delete(getDir('var/test'));
   await Future.wait([
     Dart.runAsync('test/all.dart', vmArgs: const ['--enable-vm-service', '--pause-isolates-on-exit']),
     Pub.runAsync('coverage', script: 'collect_coverage', arguments: const ['--out=var/coverage.json', '--resume-isolates', '--wait-paused'])
   ]);
 
-  delete(getDir('var/test'));
-  return Pub.runAsync('coverage', script: 'format_coverage', arguments: [
-    '--in=var/coverage.json',
-    '--lcov',
-    '--out=var/lcov.info',
-    '--packages=.packages',
-    '--report-on=${libDir.path}'
-  ]);
+  var args = ['--in=var/coverage.json', '--lcov', '--out=var/lcov.info', '--packages=.packages', '--report-on=${libDir.path}'];
+  return Pub.runAsync('coverage', script: 'format_coverage', arguments: args);
 }

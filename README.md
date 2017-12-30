@@ -34,7 +34,7 @@ The plug-in provides a set of functions that take a list of [PHP](https://secure
 
 > Whenever a function expects a directory or file parameter, you can specify it as an instance of [`FileSystemEntity`](https://api.dartlang.org/stable/1.24.2/dart-io/FileSystemEntity-class.html) or as a string (e.g. its path).
 
-### `Future compressDirectory(Directory source, Directory destination, {String pattern = '*.php', bool recurse: true})`
+### `Future<Null> compressDirectory(Directory source, Directory destination, {String pattern = '*.php', bool recurse: true})`
 Minifies the PHP files of a given source directory and saves the resulting output to a destination directory:
 
 ```dart
@@ -58,7 +58,7 @@ The source directories are scanned recursively. You can force the function to on
 php_minify.compressDirectory('path/to/src', 'path/to/out', recurse: false);
 ```
 
-### `Future compressFile(File source, File destination)`
+### `Future<Null> compressFile(File source, File destination)`
 Minifies a single PHP source file and saves the resulting output to a given destination file:
 
 ```dart
@@ -70,7 +70,7 @@ import 'package:grinder_php_minify/grinder_php_minify.dart' as php_minify;
 Future compressPhp() => php_minify.compressFile('path/to/src.php', 'path/to/out.php');
 ```
 
-### `Future compressFiles(Iterable sources, Directory destination, {String base})`
+### `Future<Null> compressFiles(Iterable sources, Directory destination, {String base})`
 Minifies the given set of PHP files and saves the resulting output to a destination directory:
 
 ```dart
