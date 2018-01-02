@@ -39,7 +39,7 @@ void main() {
     var output = joinFile(testDir, const ['sample.php']);
 
     test('should remove the comments and whitespace from a set of files', () async {
-      await compressFiles(const ['test/fixtures/sample.php'], testDir.path, base: 'test/fixtures', silent: true);
+      await compressFiles(const <String>['test/fixtures/sample.php'], testDir.path, base: 'test/fixtures', silent: true);
       expect(await output.readAsString(), allOf(
         contains("<?= 'Hello World!' ?>"),
         contains('namespace dummy; class Dummy'),
