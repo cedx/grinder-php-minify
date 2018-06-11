@@ -1,5 +1,5 @@
 # Grinder-PHP-Minify
-![Runtime](https://img.shields.io/badge/dart-%3E%3D1.24-brightgreen.svg) ![Release](https://img.shields.io/pub/v/grinder_php_minify.svg) ![License](https://img.shields.io/badge/license-MIT-blue.svg) ![Coverage](https://coveralls.io/repos/github/cedx/grinder-php-minify/badge.svg) ![Build](https://travis-ci.org/cedx/grinder-php-minify.svg)
+![Runtime](https://img.shields.io/badge/dart-%3E%3D1.24-brightgreen.svg) ![Release](https://img.shields.io/pub/v/grinder_php_minify.svg) ![License](https://img.shields.io/badge/license-MIT-blue.svg) ![Coverage](https://coveralls.io/repos/github/cedx/grinder-php-minify/badge.svg) ![Build](https://travis-ci.com/cedx/grinder-php-minify.svg)
 
 [Grinder](https://google.github.io/grinder.dart) plug-in minifying [PHP](https://secure.php.net) source code by removing comments and whitespace.
 
@@ -129,9 +129,9 @@ php_minify.compressFile('path/to/src', 'path/to/out', silent: true);
 ```
 
 ## See also
-- [API reference](https://cedx.github.io/grinder-php-minify)
+- [API reference](https://dev.belin.io/grinder-php-minify)
 - [Code coverage](https://coveralls.io/github/cedx/grinder-php-minify)
-- [Continuous integration](https://travis-ci.org/cedx/grinder-php-minify)
+- [Continuous integration](https://travis-ci.com/cedx/grinder-php-minify)
 
 ## License
 [Grinder-PHP-Minify](https://github.com/cedx/grinder-php-minify) is distributed under the MIT License.

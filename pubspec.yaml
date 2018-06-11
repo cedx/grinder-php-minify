@@ -3,19 +3,19 @@ version: 2.0.0
 
 author: Cédric Belin <cedric@belin.io>
 description: Grinder plug-in minifying PHP source code by removing comments and whitespace.
-documentation: https://cedx.github.io/grinder-php-minify
+documentation: https://dev.belin.io/grinder-php-minify
 homepage: https://github.com/cedx/grinder-php-minify
 
 environment:
-  sdk: '>=1.24.0 <2.0.0'
+  sdk: '>=2.0.0-dev.60 <2.0.0'
 
 dependencies:
-  grinder: ^0.8.1
+  grinder: ^0.8.2
   http: ^0.11.3
-  path: ^1.5.1
-  where: ^2.2.0
+  path: ^1.6.0
+  where: ^2.2.0 # 4.0.0
 
 dev_dependencies:
-  coverage: ^0.10.0
+  coverage: ^0.11.0
   coveralls: ^2.1.0
-  test: ^0.12.30
+  test: ^0.12.40
