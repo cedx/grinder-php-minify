@@ -4,7 +4,7 @@ part of grinder_php_minify;
 class FastTransformer implements Transformer {
 
   /// The default address that the server is listening on.
-  static final InternetAddress defaultAddress = InternetAddress.LOOPBACK_IP_V4;
+  static final InternetAddress defaultAddress = InternetAddress.loopbackIPv4;
 
   /// The path to the PHP executable.
   final String _executable;
