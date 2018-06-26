@@ -5,7 +5,7 @@ class Minifier {
 
   /// Creates a new minifier.
   Minifier({String binary = 'php', TransformMode mode = TransformMode.safe, this.silent = false}):
-    transformer = new Transformer(mode, executable: binary);
+    transformer = Transformer(mode, executable: binary);
 
   /// Value indicating whether to silent the plug-in output.
   bool silent;
@@ -17,8 +17,8 @@ class Minifier {
   ///
   /// Uses the specified file [pattern] to match the eligible PHP scripts.
   /// A [recurse] value indicates whether to process the input directory recursively.
-  Future<Null> compressDirectory(Directory source, Directory destination, {String pattern = '*.php', bool recurse: true}) {
-    var sources = new FileSet.fromDir(source, pattern: pattern, recurse: recurse);
+  Future<Null> compressDirectory(Directory source, Directory destination, {String pattern = '*.php', bool recurse = true}) {
+    var sources = FileSet.fromDir(source, pattern: pattern, recurse: recurse);
     return compressFiles(sources.files, destination, base: source.path);
   }
 

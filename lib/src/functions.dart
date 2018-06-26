@@ -9,11 +9,11 @@ Future<Null> compressDirectory(source, destination, {
   String binary,
   Object mode = TransformMode.safe,
   String pattern = '*.php',
-  bool recurse: true,
+  bool recurse = true,
   bool silent = false
 }) async {
   var minifier = await _createMinifier(binary, mode: mode, silent: silent);
-  return minifier.compressDirectory(new FilePath(source).asDirectory, new FilePath(destination).asDirectory);
+  return minifier.compressDirectory(FilePath(source).asDirectory, FilePath(destination).asDirectory);
 }
 
 /// Minifies the specified PHP [source] file, and optionally saves the resulting output to the specified [destination] file.
@@ -23,7 +23,7 @@ Future<Null> compressFile(source, destination, {
   bool silent = false
 }) async {
   var minifier = await _createMinifier(binary, mode: mode, silent: silent);
-  return minifier.compressFile(new FilePath(source).asFile, new FilePath(destination).asFile);
+  return minifier.compressFile(FilePath(source).asFile, FilePath(destination).asFile);
 }
 
 /// Minifies the given set of PHP [sources] and saves the resulting output to the specified [destination] directory.
@@ -35,11 +35,11 @@ Future<Null> compressFiles(Iterable sources, destination, {
   bool silent = false
 }) async {
   var minifier = await _createMinifier(binary, mode: mode, silent: silent);
-  return minifier.compressFiles(sources.map((source) => new FilePath(source).asFile), new FilePath(destination).asDirectory, base: base);
+  return minifier.compressFiles(sources.map((source) => FilePath(source).asFile), FilePath(destination).asDirectory, base: base);
 }
 
 /// Creates a new minifier.
 Future<Minifier> _createMinifier(String binary, {Object mode = TransformMode.safe, bool silent = false}) async {
   var transformMode = mode is TransformMode ? mode : (mode.toString() == 'fast' ? TransformMode.fast : TransformMode.safe);
-  return new Minifier(binary: binary ?? await where('php'), mode: transformMode, silent: silent);
+  return Minifier(binary: binary ?? await where('php'), mode: transformMode, silent: silent);
 }

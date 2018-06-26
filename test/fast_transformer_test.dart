@@ -5,7 +5,7 @@ import 'package:test/test.dart';
 /// Tests the features of the [FastTransformer] class.
 void main() => group('FastTransformer', () {
   group('.close()', () {
-    var transformer = new FastTransformer();
+    var transformer = FastTransformer();
 
     test('should complete without any error', () async {
       await transformer.listen();
@@ -19,7 +19,7 @@ void main() => group('FastTransformer', () {
   });
 
   group('.listen()', () {
-    var transformer = new FastTransformer();
+    var transformer = FastTransformer();
     tearDownAll(transformer.close);
 
     test('should complete without any error', () {
@@ -33,7 +33,7 @@ void main() => group('FastTransformer', () {
   });
 
   group('.listening', () {
-    var transformer = new FastTransformer();
+    var transformer = FastTransformer();
 
     test('should return whether the server is listening', () async {
       expect(transformer.listening, isFalse);
@@ -48,7 +48,7 @@ void main() => group('FastTransformer', () {
 
   group('.transform()', () {
     var script = getFile('test/fixtures/sample.php');
-    var transformer = new FastTransformer();
+    var transformer = FastTransformer();
     tearDownAll(transformer.close);
 
     test('should remove the inline comments', () async {

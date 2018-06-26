@@ -9,7 +9,7 @@ Future main(List<String> args) => grind(args);
 void clean() {
   defaultClean();
   delete(getDir('var/test'));
-  new FileSet.fromDir(getDir('var'), pattern: '*.{info,json}').files.forEach(delete);
+  FileSet.fromDir(getDir('var'), pattern: '*.{info,json}').files.forEach(delete);
 }
 
 /// Uploads the code coverage report.

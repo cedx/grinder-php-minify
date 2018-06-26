@@ -81,7 +81,7 @@ import 'package:grinder_php_minify/grinder_php_minify.dart' as php_minify;
 @Task('Compress a given set of PHP scripts')
 Future compressPhp() {
   var sourceDir = getDir('path/to/src');
-  var fileSet = new FileSet.fromDirectory(sourceDir, pattern: '*.php', recurse: true);
+  var fileSet = FileSet.fromDir(sourceDir, pattern: '*.php', recurse: true);
   return php_minify.compressFiles(fileSet.files, 'path/to/out', base: sourceDir.path);
 }
 ```
