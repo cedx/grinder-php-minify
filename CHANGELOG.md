@@ -1,5 +1,8 @@
 # Changelog
-This file contains highlights of what changes on each version of the [Grinder-PHP-Minify](https://github.com/cedx/grinder-php-minify) package.
+
+- Raised the [Dart SDK](https://www.dartlang.org/tools/sdk) constraint.
+- Using optional `const` and `new`.
+- Updated the package dependencies.
 
 ## Version [2.0.0](https://github.com/cedx/grinder-php-minify/compare/v1.0.1...v2.0.0)
 - Breaking change: changed the signature of the `Minifier` and `Transformer` constructors.

@@ -1,5 +1,5 @@
 # Grinder-PHP-Minify
-![Runtime](https://img.shields.io/badge/dart-%3E%3D1.24-brightgreen.svg) ![Release](https://img.shields.io/pub/v/grinder_php_minify.svg) ![License](https://img.shields.io/badge/license-MIT-blue.svg) ![Coverage](https://coveralls.io/repos/github/cedx/grinder-php-minify/badge.svg) ![Build](https://travis-ci.com/cedx/grinder-php-minify.svg)
+![Runtime](https://img.shields.io/badge/dart-%3E%3D2.0-brightgreen.svg) ![Release](https://img.shields.io/pub/v/grinder_php_minify.svg) ![License](https://img.shields.io/badge/license-MIT-blue.svg) ![Coverage](https://coveralls.io/repos/github/cedx/grinder-php-minify/badge.svg) ![Build](https://travis-ci.com/cedx/grinder-php-minify.svg)
 
 [Grinder](https://google.github.io/grinder.dart) plug-in minifying [PHP](https://secure.php.net) source code by removing comments and whitespace.
 
@@ -32,7 +32,7 @@ import 'package:grinder_php_minify/grinder_php_minify.dart' as php_minify;
 ## Usage
 The plug-in provides a set of functions that take a list of [PHP](https://secure.php.net) scripts as input, and remove the comments and whitespace in this file by applying the [`php_strip_whitespace()`](https://secure.php.net/manual/en/function.php-strip-whitespace.php) function on their contents.
 
-> Whenever a function expects a directory or file parameter, you can specify it as an instance of [`FileSystemEntity`](https://api.dartlang.org/stable/1.24.2/dart-io/FileSystemEntity-class.html) or as a string (e.g. its path).
+> Whenever a function expects a directory or file parameter, you can specify it as an instance of [`FileSystemEntity`](https://api.dartlang.org/stable/dart-io/FileSystemEntity-class.html) or as a string (e.g. its path).
 
 ### `Future<Null> compressDirectory(Directory source, Directory destination, {String pattern = '*.php', bool recurse: true})`
 Minifies the PHP files of a given source directory and saves the resulting output to a destination directory:
