@@ -7,7 +7,7 @@ documentation: https://dev.belin.io/grinder-php-minify
 homepage: https://github.com/cedx/grinder-php-minify
 
 environment:
-  sdk: '>=2.0.0-dev.65 <2.0.0'
+  sdk: '>=2.0.0-dev.66 <2.0.0'
 
 dependencies:
   grinder: ^0.8.2
