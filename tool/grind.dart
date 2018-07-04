@@ -8,20 +8,19 @@ Future main(List<String> args) => grind(args);
 @Task('Delete the generated files')
 void clean() {
   defaultClean();
-  delete(getDir('var/test'));
+  ['.dart_tool/build', 'doc/api', 'var/test', webDir.path].map(getDir).forEach(delete);
   FileSet.fromDir(getDir('var'), pattern: '*.{info,json}').files.forEach(delete);
 }
 
 /// Uploads the code coverage report.
 @Task('Upload the code coverage')
-@Depends(test)
-void coverage() => Pub.run('coveralls', arguments: const ['var/lcov.info']);
+void coverage() => Pub.run('coveralls', arguments: ['var/lcov.info']);
 
 /// Builds the documentation.
 @Task('Build the documentation')
 void doc() {
-  delete(getDir('doc/api'));
   DartDoc.doc();
+  run('mkdocs', arguments: ['build']);
 }
 
 /// Fixes the coding standards issues.
@@ -37,10 +36,19 @@ void lint() => Analyzer.analyze(existingSourceDirs);
 Future test() async {
   delete(getDir('var/test'));
   await Future.wait([
-    Dart.runAsync('test/all.dart', vmArgs: const ['--enable-vm-service', '--pause-isolates-on-exit']),
-    Pub.runAsync('coverage', script: 'collect_coverage', arguments: const ['--out=var/coverage.json', '--resume-isolates', '--wait-paused'])
+    Dart.runAsync('test/all.dart', vmArgs: ['--enable-vm-service', '--pause-isolates-on-exit']),
+    Pub.runAsync('coverage', script: 'collect_coverage', arguments: ['--out=var/coverage.json', '--resume-isolates', '--wait-paused'])
   ]);
 
   var args = ['--in=var/coverage.json', '--lcov', '--out=var/lcov.info', '--packages=.packages', '--report-on=${libDir.path}'];
   return Pub.runAsync('coverage', script: 'format_coverage', arguments: args);
+}
+
+/// Upgrades the project to the latest revision.
+@Task('Upgrade the project')
+void upgrade() {
+  run('git', arguments: ['reset', '--hard']);
+  run('git', arguments: ['fetch', '--all', '--prune']);
+  run('git', arguments: ['pull', '--rebase']);
+  Pub.upgrade();
 }
