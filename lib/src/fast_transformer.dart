@@ -37,7 +37,7 @@ class FastTransformer implements Transformer {
 
     var server = await Isolate.resolvePackageUri(Uri.parse('package:grinder_php_minify/php/'));
     _port = await _getPort();
-    _process = await Process.start(_executable, ['-S', '${FastTransformer.defaultAddress.host}:$_port', '-t', server.toFilePath()]);
+    _process = await Process.start(_executable, ['-S', '${defaultAddress.host}:$_port', '-t', server.toFilePath()]);
     return Future.delayed(const Duration(seconds: 1), () => _port);
   }
 
@@ -46,12 +46,12 @@ class FastTransformer implements Transformer {
   Future<String> transform(File script) async {
     var file = Uri.encodeComponent(script.absolute.path);
     await listen();
-    return http.read('http://${FastTransformer.defaultAddress.host}:$_port/server.php?file=$file');
+    return http.read('http://${defaultAddress.host}:$_port/server.php?file=$file');
   }
 
   /// Gets an ephemeral port chosen by the system.
   Future<int> _getPort() async {
-    var server = await ServerSocket.bind(FastTransformer.defaultAddress, 0);
+    var server = await ServerSocket.bind(defaultAddress, 0);
     var port = server.port;
     await server.close();
     return port;

@@ -6,6 +6,9 @@
 *.php text diff=php
 *.txt text
 *.yaml text
+*.yml text
 
 *.ico binary
+*.jpg binary
+*.pdf binary
 *.png binary
