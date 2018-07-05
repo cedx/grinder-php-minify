@@ -11,7 +11,7 @@ class SafeTransformer implements Transformer {
 
   /// Closes this transformer and releases any resources associated with it.
   @override
-  Future<Null> close() async => null;
+  Future<void> close() async => null;
 
   /// Processes the specified PHP [script] and returns its contents minified.
   @override

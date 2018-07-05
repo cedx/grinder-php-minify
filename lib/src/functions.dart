@@ -4,7 +4,7 @@ part of grinder_php_minify;
 ///
 /// Uses the specified file [pattern] to match the eligible PHP scripts.
 /// A [recurse] value indicates whether to process the input directory recursively.
-Future<Null> compressDirectory(Object source, Object destination, {
+Future<void> compressDirectory(Object source, Object destination, {
   String binary,
   Object mode = TransformMode.safe,
   String pattern = '*.php',
@@ -16,7 +16,7 @@ Future<Null> compressDirectory(Object source, Object destination, {
 }
 
 /// Minifies the specified PHP [source] file, and optionally saves the resulting output to the specified [destination] file.
-Future<Null> compressFile(Object source, Object destination, {
+Future<void> compressFile(Object source, Object destination, {
   String binary,
   Object mode = TransformMode.safe,
   bool silent = false
@@ -27,7 +27,7 @@ Future<Null> compressFile(Object source, Object destination, {
 
 /// Minifies the given set of PHP [sources] and saves the resulting output to the specified [destination] directory.
 /// A [base] path, defaulting to the current working directory, is removed from the target path of the destination files.
-Future<Null> compressFiles(Iterable sources, Object destination, {
+Future<void> compressFiles(Iterable sources, Object destination, {
   String base,
   String binary,
   Object mode = TransformMode.safe,

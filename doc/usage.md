@@ -8,7 +8,7 @@ The plug-in provides a set of functions that take a list of [PHP](https://secure
     Whenever a function expects a directory or file parameter,
     you can specify it as an instance of [`FileSystemEntity`](https://api.dartlang.org/stable/dart-io/FileSystemEntity-class.html) or as a string (e.g. its path).
     
-### `Future<Null> compressDirectory(Directory source, Directory destination, {String pattern = '*.php', bool recurse: true})`
+### Future&lt;void&gt; **compressDirectory**(Directory source, Directory destination, {String pattern = `"*.php"`, bool recurse = `true`})
 Minifies the PHP files of a given source directory and saves the resulting output to a destination directory:
 
 ```dart
@@ -17,7 +17,7 @@ import 'package:grinder/grinder.dart';
 import 'package:grinder_php_minify/grinder_php_minify.dart' as php_minify;
 
 @Task('Compress the PHP scripts from a given directory')
-Future compressPhp() => php_minify.compressDirectory('path/to/src', 'path/to/out');
+Future<void> compressPhp() => php_minify.compressDirectory('path/to/src', 'path/to/out');
 ```
 
 When the function processes a directory, a filter is applied on the names of the processed files to determine whether they are PHP scripts. A filename pattern is used to match the eligible PHP scripts, by default it's set to `"*.php"`. You can change use the `pattern` option to select a different set of PHP scripts:
@@ -32,7 +32,7 @@ The source directories are scanned recursively. You can force the function to on
 php_minify.compressDirectory('path/to/src', 'path/to/out', recurse: false);
 ```
 
-### `Future<Null> compressFile(File source, File destination)`
+### Future&lt;void&gt; **compressFile**(File source, File destination)
 Minifies a single PHP source file and saves the resulting output to a given destination file:
 
 ```dart
@@ -41,10 +41,10 @@ import 'package:grinder/grinder.dart';
 import 'package:grinder_php_minify/grinder_php_minify.dart' as php_minify;
 
 @Task('Compress a given PHP script')
-Future compressPhp() => php_minify.compressFile('path/to/src.php', 'path/to/out.php');
+Future<void> compressPhp() => php_minify.compressFile('path/to/src.php', 'path/to/out.php');
 ```
 
-### `Future<Null> compressFiles(Iterable sources, Directory destination, {String base})`
+### Future&lt;void&gt; **compressFiles**(Iterable sources, Directory destination, {String base})
 Minifies the given set of PHP files and saves the resulting output to a destination directory:
 
 ```dart
@@ -53,7 +53,7 @@ import 'package:grinder/grinder.dart';
 import 'package:grinder_php_minify/grinder_php_minify.dart' as php_minify;
 
 @Task('Compress a given set of PHP scripts')
-Future compressPhp() {
+Future<void> compressPhp() {
   var sourceDir = getDir('path/to/src');
   var fileSet = FileSet.fromDir(sourceDir, pattern: '*.php', recurse: true);
   return php_minify.compressFiles(fileSet.files, 'path/to/out', base: sourceDir.path);
@@ -74,7 +74,7 @@ php_minify.compressFiles(['src/script.php'], 'out', base: 'src');
 ## Options
 All functions also support the following optional named parameters:
 
-### `String binary = "php"`
+### String **binary** = `"php"`
 The functions rely on the availability of the [PHP](https://secure.php.net) executable on the target system. By default, the functions will use the `php` binary found on the system path.
 
 If a function cannot find the default `php` binary, or if you want to use a different one, you can provide the path to the `php` executable by using the `binary` option:
@@ -83,7 +83,7 @@ If a function cannot find the default `php` binary, or if you want to use a diff
 php_minify.compressFile('path/to/src', 'path/to/out', binary: r'C:\Program Files\PHP\php.exe');
 ```
 
-### `TransformMode mode = TransformMode.safe`
+### TransformMode **mode** = `TransformMode.safe`
 The functions can work in two manners, which can be selected using the `mode` option:
 
 - the `safe` mode: as its name implies, this mode is very reliable. But it is also very slow as it spawns a new PHP process for every file to be processed. This is the default mode.
@@ -93,9 +93,12 @@ The functions can work in two manners, which can be selected using the `mode` op
 php_minify.compressFile('path/to/src', 'path/to/out', mode: 'fast');
 ```
 
-> The transform mode can be specified as a value of the `TransformMode` enumeration or as a string (e.g. the name of the enumerated value).
+!!! tip
+    The transform mode can be specified as a value
+    of the `TransformMode` enumeration or as a string
+    (e.g. the name of the enumerated value).
 
-### `bool silent = false`
+### bool **silent** = `false`
 By default, the functions print to the standard output the paths of the minified scripts. You can disable this output by setting the `silent` option to `true`.
 
 ```dart

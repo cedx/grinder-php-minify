@@ -8,7 +8,7 @@ abstract class Transformer {
     mode == TransformMode.fast ? FastTransformer(executable) : SafeTransformer(executable);
 
   /// Closes this transformer and releases any resources associated with it.
-  Future<Null> close();
+  Future<void> close();
 
   /// Processes the specified PHP [script] and returns its contents minified.
   Future<String> transform(File script);
