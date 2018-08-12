@@ -1,4 +1,4 @@
-part of grinder_php_minify;
+part of '../grinder_php_minify.dart';
 
 /// Minifies the PHP files of the specified [source] directory, and optionally saves the resulting output to the specified [destination] directory.
 ///

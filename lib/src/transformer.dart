@@ -1,4 +1,4 @@
-part of grinder_php_minify;
+part of '../grinder_php_minify.dart';
 
 /// Interface providing a mechanism for transforming input and producing output.
 abstract class Transformer {

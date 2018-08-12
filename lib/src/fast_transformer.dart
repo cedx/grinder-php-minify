@@ -1,4 +1,4 @@
-part of grinder_php_minify;
+part of '../grinder_php_minify.dart';
 
 /// Removes comments and whitespace from a PHP script, by calling a Web service.
 class FastTransformer implements Transformer {
