@@ -10,7 +10,7 @@ Future<void> compressPhpFile() => php_minify.compressFile('path/to/src.php', 'pa
 
 @Task('Compresses a given set of PHP scripts')
 Future<void> compressPhpFiles() {
-  var sourceDir = getDir('path/to/src');
-  var fileSet = FileSet.fromDir(sourceDir, pattern: '*.php', recurse: true);
+  final sourceDir = getDir('path/to/src');
+  final fileSet = FileSet.fromDir(sourceDir, pattern: '*.php', recurse: true);
   return php_minify.compressFiles(fileSet.files, 'path/to/out', base: sourceDir.path);
 }

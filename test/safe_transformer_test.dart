@@ -5,7 +5,7 @@ import 'package:test/test.dart';
 /// Tests the features of the [SafeTransformer] class.
 void main() => group('SafeTransformer', () {
   group('.close()', () {
-    var transformer = SafeTransformer();
+    final transformer = SafeTransformer();
 
     test('should complete without any error', () {
       expect(transformer.close(), completes);
@@ -18,8 +18,8 @@ void main() => group('SafeTransformer', () {
   });
 
   group('.transform()', () {
-    var script = getFile('test/fixtures/sample.php');
-    var transformer = SafeTransformer();
+    final script = getFile('test/fixtures/sample.php');
+    final transformer = SafeTransformer();
     tearDownAll(transformer.close);
 
     test('should remove the inline comments', () async {

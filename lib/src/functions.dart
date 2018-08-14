@@ -11,7 +11,7 @@ Future<void> compressDirectory(Object source, Object destination, {
   bool recurse = true,
   bool silent = false
 }) async {
-  var minifier = await _createMinifier(binary, mode: mode, silent: silent);
+  final minifier = await _createMinifier(binary, mode: mode, silent: silent);
   return minifier.compressDirectory(FilePath(source).asDirectory, FilePath(destination).asDirectory);
 }
 
@@ -21,7 +21,7 @@ Future<void> compressFile(Object source, Object destination, {
   Object mode = TransformMode.safe,
   bool silent = false
 }) async {
-  var minifier = await _createMinifier(binary, mode: mode, silent: silent);
+  final minifier = await _createMinifier(binary, mode: mode, silent: silent);
   return minifier.compressFile(FilePath(source).asFile, FilePath(destination).asFile);
 }
 
@@ -33,12 +33,12 @@ Future<void> compressFiles(Iterable sources, Object destination, {
   Object mode = TransformMode.safe,
   bool silent = false
 }) async {
-  var minifier = await _createMinifier(binary, mode: mode, silent: silent);
+  final minifier = await _createMinifier(binary, mode: mode, silent: silent);
   return minifier.compressFiles(sources.map((source) => FilePath(source).asFile), FilePath(destination).asDirectory, base: base);
 }
 
 /// Creates a new minifier.
 Future<Minifier> _createMinifier(String binary, {Object mode = TransformMode.safe, bool silent = false}) async {
-  var transformMode = mode is TransformMode ? mode : (mode.toString() == 'fast' ? TransformMode.fast : TransformMode.safe);
+  final transformMode = mode is TransformMode ? mode : (mode.toString() == 'fast' ? TransformMode.fast : TransformMode.safe);
   return Minifier(binary: binary ?? await where('php'), mode: transformMode, silent: silent);
 }

@@ -18,7 +18,7 @@ class Minifier {
   /// Uses the specified file [pattern] to match the eligible PHP scripts.
   /// A [recurse] value indicates whether to process the input directory recursively.
   Future<void> compressDirectory(Directory source, Directory destination, {String pattern = '*.php', bool recurse = true}) {
-    var sources = FileSet.fromDir(source, pattern: pattern, recurse: recurse);
+    final sources = FileSet.fromDir(source, pattern: pattern, recurse: recurse);
     return compressFiles(sources.files, destination, base: source.path);
   }
 
@@ -32,7 +32,7 @@ class Minifier {
   /// A [base] path, defaulting to the current working directory, is removed from the target path of the destination files.
   Future<void> compressFiles(Iterable<File> sources, Directory destination, {String base}) async {
     base ??= Directory.current.path;
-    for (var file in sources) await _transform(file, joinFile(destination, [path.relative(file.path, from: base)]));
+    for (final file in sources) await _transform(file, joinFile(destination, [path.relative(file.path, from: base)]));
     return transformer.close();
   }
 
