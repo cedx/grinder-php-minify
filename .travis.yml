@@ -1,16 +1,15 @@
+dart: [stable]
 dist: trusty
-language: php
+language: dart
 notifications: {email: false}
-php: '7.2'
 sudo: false
 
-install:
-- curl --output "$HOME/dart-sdk.zip" https://storage.googleapis.com/dart-archive/channels/stable/release/latest/sdk/dartsdk-linux-x64-release.zip
-- unzip "$HOME/dart-sdk.zip" -d "$HOME"
-- export DART_SDK="$HOME/dart-sdk"
-- export PATH="$DART_SDK/bin:$HOME/.pub-cache/bin:$PATH"
-- dart --version
-- pub get
+before_install:
+- curl --output archive.tar.bz2 https://s3.amazonaws.com/travis-php-archives/binaries/ubuntu/14.04/x86_64/php-7.2.tar.bz2
+- tar --extract --file=archive.tar.bz2 --directory /
+- phpenv global 7.2
+- php --version
 
+install: pub get
 script: pub run grinder test
 after_success: pub run coveralls var/lcov.info
