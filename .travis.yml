@@ -5,8 +5,8 @@ notifications: {email: false}
 sudo: false
 
 before_install:
-- curl --output archive.tar.bz2 https://s3.amazonaws.com/travis-php-archives/binaries/ubuntu/14.04/x86_64/php-7.2.tar.bz2
-- tar --extract --file=archive.tar.bz2 --directory /
+- curl --output=archive.tar.bz2 https://s3.amazonaws.com/travis-php-archives/binaries/ubuntu/14.04/x86_64/php-7.2.tar.bz2
+- tar --directory=/ --extract --file=archive.tar.bz2
 - phpenv global 7.2
 - php --version
 
