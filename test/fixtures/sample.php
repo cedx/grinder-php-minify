@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * Implementation of the `dummy\Dummy` class.
  */
@@ -10,7 +12,7 @@ namespace dummy;
 class Dummy {
 
   /**
-   * Initializes a new instance of the class.
+   * Creates a new instance.
    */
   public function __construct() {
 
@@ -42,4 +44,3 @@ class Dummy {
     </h1>
   </body>
 </html>
-
