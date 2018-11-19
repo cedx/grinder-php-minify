@@ -49,4 +49,4 @@ void upgrade() {
 }
 
 @Task('Watches for file changes')
-void watch() => Pub.run('build_runner', arguments: ['watch']);
+void watch() => Pub.run('build_runner', arguments: ['watch', '--delete-conflicting-outputs']);
