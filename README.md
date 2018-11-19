@@ -3,11 +3,14 @@
 
 [Grinder](https://google.github.io/grinder.dart) plug-in minifying [PHP](https://secure.php.net) source code by removing comments and whitespace.
 
-## Resources
-- [Documentation](https://dev.belin.io/grinder-php-minify)
+## Documentation
+- [User guide](https://dev.belin.io/grinder-php-minify)
 - [API reference](https://dev.belin.io/grinder-php-minify/api)
+
+## Development
+- [Git repository](https://github.com/cedx/grinder-php-minify)
 - [Pub package](https://pub.dartlang.org/packages/grinder_php_minify)
-- [GitHub repository](https://github.com/cedx/grinder-php-minify)
+- [Submit an issue](https://git.belin.io/cedx/grinder-php-minify/issues)
 
 ## License
 [Grinder-PHP-Minify](https://dev.belin.io/grinder-php-minify) is distributed under the MIT License.

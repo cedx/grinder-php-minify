@@ -3,6 +3,7 @@
 ## Development
 - [API reference](https://dev.belin.io/grinder-php-minify/api)
 - [Pub package](https://pub.dartlang.org/packages/grinder_php_minify)
+- [Submit an issue](https://git.belin.io/cedx/grinder-php-minify/issues)
 
 ## Testing
 - [Continuous integration](https://travis-ci.com/cedx/grinder-php-minify)
