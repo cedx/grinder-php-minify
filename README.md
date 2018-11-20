@@ -10,7 +10,7 @@
 ## Development
 - [Git repository](https://git.belin.io/cedx/grinder-php-minify)
 - [Pub package](https://pub.dartlang.org/packages/grinder_php_minify)
-- [Submit an issue](https://git.belin.io/cedx/grinder-php-minify/issues)
+- [Submit an issue](https://github.com/cedx/grinder-php-minify/issues)
 
 ## License
 [Grinder-PHP-Minify](https://dev.belin.io/grinder-php-minify) is distributed under the MIT License.
