@@ -3,6 +3,9 @@ part of '../grinder_php_minify.dart';
 /// Removes comments and whitespace from a PHP script, by calling a Web service.
 class FastTransformer implements Transformer {
 
+  /// Creates a new fast transformer.
+  FastTransformer([this._executable = 'php']);
+
   /// The default address that the server is listening on.
   static final InternetAddress defaultAddress = InternetAddress.loopbackIPv4;
 
@@ -14,9 +17,6 @@ class FastTransformer implements Transformer {
 
   /// The underlying PHP process.
   Process _process;
-
-  /// Creates a new fast transformer.
-  FastTransformer([this._executable = 'php']);
 
   /// Value indicating whether the PHP process is currently listening.
   bool get listening => _process != null;
