@@ -12,7 +12,6 @@ The plug-in provides a set of functions that take a list of [PHP](https://secure
 Minifies the PHP files of a given source directory and saves the resulting output to a destination directory:
 
 ```dart
-import 'dart:async';
 import 'package:grinder/grinder.dart';
 import 'package:grinder_php_minify/grinder_php_minify.dart' as php_minify;
 
@@ -36,7 +35,6 @@ php_minify.compressDirectory('path/to/src', 'path/to/out', recurse: false);
 Minifies a single PHP source file and saves the resulting output to a given destination file:
 
 ```dart
-import 'dart:async';
 import 'package:grinder/grinder.dart';
 import 'package:grinder_php_minify/grinder_php_minify.dart' as php_minify;
 
@@ -48,7 +46,6 @@ Future<void> compressPhp() => php_minify.compressFile('path/to/src.php', 'path/t
 Minifies the given set of PHP files and saves the resulting output to a destination directory:
 
 ```dart
-import 'dart:async';
 import 'package:grinder/grinder.dart';
 import 'package:grinder_php_minify/grinder_php_minify.dart' as php_minify;
 

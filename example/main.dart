@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:grinder/grinder.dart';
 import 'package:grinder_php_minify/grinder_php_minify.dart' as php_minify;
 
