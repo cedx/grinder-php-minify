@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [4.1.0](https://github.com/cedx/grinder-php-minify/compare/v4.0.0...v4.1.0)
+- Updated the package dependencies.
+
 ## Version [4.0.0](https://github.com/cedx/grinder-php-minify/compare/v3.5.0...v4.0.0)
 - Breaking change: raised the [Dart SDK](https://www.dartlang.org/tools/sdk) constraint.
 - Updated the package dependencies.
