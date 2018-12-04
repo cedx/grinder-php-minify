@@ -40,5 +40,5 @@ Future<void> compressFiles(Iterable sources, Object destination, {
 /// Creates a new minifier.
 Future<Minifier> _createMinifier(String binary, {Object mode = TransformMode.safe, bool silent = false}) async {
   final transformMode = mode is TransformMode ? mode : (mode.toString() == 'fast' ? TransformMode.fast : TransformMode.safe);
-  return Minifier(binary: binary ?? await where('php', onError: (_) => 'php'), mode: transformMode, silent: silent);
+  return Minifier(binary: binary ?? await where('php', onError: (command) => command), mode: transformMode, silent: silent);
 }
