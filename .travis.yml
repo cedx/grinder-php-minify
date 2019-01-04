@@ -1,15 +1,14 @@
 dist: xenial
-env: [CHANNEL=dev, CHANNEL=stable]
+env: [DART=dev, DART=stable]
 language: php
 notifications: {email: false}
 php: ['7.2', '7.3']
 
 before_install:
-  - curl --location --remote-name https://storage.googleapis.com/dart-archive/channels/$CHANNEL/release/latest/sdk/dartsdk-linux-x64-release.zip
+  - curl --remote-name https://storage.googleapis.com/dart-archive/channels/$DART/release/latest/sdk/dartsdk-linux-x64-release.zip
   - unzip dartsdk-linux-x64-release.zip -d ${TRAVIS_HOME}
   - export PATH="${TRAVIS_HOME}/dart-sdk/bin:${TRAVIS_HOME}/.pub-cache/bin:$PATH"
   - dart --version
-  - pub --version
 
 install: pub get
 script: pub run grinder test
