@@ -8,7 +8,7 @@
 - [API reference](https://dev.belin.io/grinder-php-minify/api)
 
 ## Development
-- [Git repository](https://git.belin.io/cedx/grinder-php-minify)
+- [Git repository](https://github.com/cedx/grinder-php-minify)
 - [Pub package](https://pub.dartlang.org/packages/grinder_php_minify)
 - [Submit an issue](https://github.com/cedx/grinder-php-minify/issues)
 
