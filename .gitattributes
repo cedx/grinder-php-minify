@@ -2,6 +2,7 @@
 
 .* text
 *.dart text
+*.http text
 *.md text
 *.php text diff=php
 *.txt text
