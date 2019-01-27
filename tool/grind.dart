@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:grinder/grinder.dart';
 
 /// Starts the build system.
@@ -26,6 +27,12 @@ void fix() => DartFmt.format(existingSourceDirs);
 
 @Task('Performs the static analysis of source code')
 void lint() => Analyzer.analyze(existingSourceDirs);
+
+@Task('Starts the development server.')
+Future<void> serve() {
+  log('Serving `lib/php` on http://localhost:8000');
+  return Process.start('php', ['-S', 'localhost:8000', '-t', 'lib/php'], mode: ProcessStartMode.inheritStdio);
+}
 
 @DefaultTask('Runs the test suites')
 Future test() async {
