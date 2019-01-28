@@ -37,7 +37,7 @@ class FastTransformer implements Transformer {
 
     final server = await Isolate.resolvePackageUri(Uri.parse('package:grinder_php_minify/php/'));
     _port = await _getPort();
-    _process = await Process.start(path.normalize(_executable), ['-S', '${defaultAddress.host}:$_port', '-t', server.toFilePath()], runInShell: true);
+    _process = await Process.start(path.normalize(_executable), ['-S', '${defaultAddress.host}:$_port', '-t', server.toFilePath()]);
     return Future.delayed(const Duration(seconds: 1), () => _port);
   }
 
