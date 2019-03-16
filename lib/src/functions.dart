@@ -18,7 +18,7 @@ Future<void> compressDirectory(Object source, Object destination, {
 /// Minifies the specified PHP [source] file, and optionally saves the resulting output to the specified [destination] file.
 Future<void> compressFile(Object source, Object destination, {
   String binary,
-  Object mode = TransformMode.safe,
+  TransformMode mode = TransformMode.safe,
   bool silent = false
 }) async {
   final minifier = await _createMinifier(binary, mode: mode, silent: silent);
@@ -30,7 +30,7 @@ Future<void> compressFile(Object source, Object destination, {
 Future<void> compressFiles(Iterable sources, Object destination, {
   String base,
   String binary,
-  Object mode = TransformMode.safe,
+  TransformMode mode = TransformMode.safe,
   bool silent = false
 }) async {
   final minifier = await _createMinifier(binary, mode: mode, silent: silent);
@@ -38,7 +38,5 @@ Future<void> compressFiles(Iterable sources, Object destination, {
 }
 
 /// Creates a new minifier.
-Future<Minifier> _createMinifier(String binary, {Object mode = TransformMode.safe, bool silent = false}) async {
-  final transformMode = mode is TransformMode ? mode : (mode.toString() == 'fast' ? TransformMode.fast : TransformMode.safe);
-  return Minifier(binary: binary ?? await where('php', onError: (command) => command), mode: transformMode, silent: silent);
-}
+Future<Minifier> _createMinifier(String binary, {TransformMode mode = TransformMode.safe, bool silent = false}) async =>
+  Minifier(binary: binary ?? await where('php', onError: (command) => command), mode: mode, silent: silent);
