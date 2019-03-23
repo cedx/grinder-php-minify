@@ -1,3 +1,4 @@
+@TestOn('vm')
 import 'package:grinder/grinder.dart';
 import 'package:grinder_php_minify/grinder_php_minify.dart';
 import 'package:test/test.dart';

@@ -1,3 +1,5 @@
+@TestOn('vm')
+import 'package:test/test.dart';
 import 'fast_transformer_test.dart' as fast_transformer_test;
 import 'functions_test.dart' as functions_test;
 import 'minifier_test.dart' as minifier_test;
