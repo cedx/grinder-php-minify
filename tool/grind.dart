@@ -1,5 +1,8 @@
+import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 import 'package:grinder/grinder.dart';
+import 'package:pedantic/pedantic.dart';
 
 /// Starts the build system.
 Future main(List<String> args) => grind(args);
@@ -8,7 +11,7 @@ Future main(List<String> args) => grind(args);
 void clean() {
   defaultClean();
   ['.dart_tool/build', 'doc/api', 'var/test', webDir.path].map(getDir).forEach(delete);
-  FileSet.fromDir(getDir('var'), pattern: '!.*', recurse: true).files.forEach(delete);
+  FileSet.fromDir(getDir('var'), pattern: '*.{info,json}', recurse: true).files.forEach(delete);
 }
 
 @Task('Uploads the results of the code coverage')
@@ -35,16 +38,22 @@ Future<void> serve() {
   return Process.start('php', ['-S', '127.0.0.1:8000', '-t', 'lib/php'], mode: ProcessStartMode.inheritStdio);
 }
 
-@DefaultTask('Runs the test suites')
-Future test() async {
-  delete(getDir('var/test'));
-  await Future.wait([
-    Dart.runAsync('test/all.dart', vmArgs: ['--enable-vm-service', '--pause-isolates-on-exit']),
-    Pub.runAsync('coverage', script: 'collect_coverage', arguments: ['--out=var/coverage.json', '--resume-isolates', '--wait-paused'])
+@Task('Runs the test suites')
+Future<void> test() async {
+  await Pub.runAsync('coverage', script: 'collect_coverage', arguments: [
+    '--out=var/coverage.json',
+    '--resume-isolates',
+    '--uri=${await _profileTest(getFile('test/all.dart'))}',
+    '--wait-paused'
   ]);
 
-  final args = ['--in=var/coverage.json', '--lcov', '--out=var/lcov.info', '--packages=.packages', '--report-on=${libDir.path}'];
-  return Pub.runAsync('coverage', script: 'format_coverage', arguments: args);
+  return Pub.runAsync('coverage', script: 'format_coverage', arguments: [
+    '--in=var/coverage.json',
+    '--lcov',
+    '--out=var/lcov.info',
+    '--packages=.packages',
+    '--report-on=${libDir.path}'
+  ]);
 }
 
 @Task('Upgrades the project to the latest revision')
@@ -57,3 +66,24 @@ void upgrade() {
 
 @Task('Watches for file changes')
 void watch() => Pub.run('build_runner', arguments: ['watch', '--delete-conflicting-outputs']);
+
+/// Profiles the execution of the specified test file.
+/// Returns the URI that Observatory is listening on.
+Future<Uri> _profileTest(File testFile) async {
+  var counter = 0;
+  final completer = Completer<Uri>();
+
+  final process = await Process.start('dart', ['--enable-vm-service', '--pause-isolates-on-exit', testFile.path]);
+  process.stderr.transform(utf8.decoder).listen((data) => print(data.trimRight()));
+  process.stdout.transform(utf8.decoder).listen((data) {
+    print(data.trimRight());
+    if (++counter == 1) {
+      final match = RegExp(r'^Observatory listening on (.*)').firstMatch(data);
+      final uri = match != null ? match[1].trim() : 'http://127.0.0.1:8181/';
+      completer.complete(Uri.parse(uri));
+    }
+  });
+
+  unawaited(process.exitCode.then((code) => exitCode = code));
+  return completer.future;
+}
