@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [4.3.0](https://github.com/cedx/grinder-php-minify/compare/v4.2.0...v4.3.0)
+- Raised the [Dart SDK](https://www.dartlang.org/tools/sdk) constraint.
+- Updated the package dependencies.
+
 ## Version [4.2.0](https://github.com/cedx/grinder-php-minify/compare/v4.1.0...v4.2.0)
 - Updated the package dependencies.
 - Updated the URL of the Git repository.
@@ -8,7 +12,7 @@
 - Updated the package dependencies.
 
 ## Version [4.0.0](https://github.com/cedx/grinder-php-minify/compare/v3.5.0...v4.0.0)
-- Breaking change: raised the [Dart SDK](https://www.dartlang.org/tools/sdk) constraint.
+- Raised the [Dart SDK](https://www.dartlang.org/tools/sdk) constraint.
 - Updated the package dependencies.
 
 ## Version [3.5.0](https://github.com/cedx/grinder-php-minify/compare/v3.4.0...v3.5.0)
@@ -31,7 +35,7 @@
 
 ## Version [3.0.0](https://github.com/cedx/grinder-php-minify/compare/v2.0.0...v3.0.0)
 - Breaking change: starting to use and support the [Dart 2 SDK](https://www.dartlang.org/tools/sdk).
-- Breaking change: raised the required [PHP](https://secure.php.net) version.
+- Raised the required [PHP](https://secure.php.net) version.
 - Added a user guide based on [MkDocs](http://www.mkdocs.org).
 - Using optional `const` and `new`.
 - Using PHP 7.1 features, like void functions.
@@ -51,7 +55,7 @@
 ## Version [1.0.0](https://github.com/cedx/grinder-php-minify/compare/v0.2.0...v1.0.0)
 - Breaking change: changed the signature of most class constructors.
 - Breaking change: merged the `compress()` and `compressFile()` functions into the `phpMinify()` function.
-- Breaking change: raised the required [Dart](https://www.dartlang.org) version.
+- Raised the required [Dart](https://www.dartlang.org) version.
 - Breaking change: removed the `binary` and `mode` properties from the `Minifier` class.
 - Breaking change: the `Minifier.transformer` property is now `final`.
 - Added a factory constructor to the `Transformer` class.
