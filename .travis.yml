@@ -5,7 +5,7 @@ notifications: {email: false}
 php: ['7.2', '7.3']
 
 before_install:
-  - curl --location --remote-name https://storage.googleapis.com/dart-archive/channels/$DART/release/latest/sdk/dartsdk-linux-x64-release.zip
+  - curl --location --remote-name https://storage.googleapis.com/dart-archive/channels/${DART}/release/latest/sdk/dartsdk-linux-x64-release.zip
   - unzip dartsdk-linux-x64-release.zip -d ${TRAVIS_HOME}
   - export PATH="${TRAVIS_HOME}/dart-sdk/bin:${TRAVIS_HOME}/.pub-cache/bin:$PATH"
   - dart --version
