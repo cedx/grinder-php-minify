@@ -12,4 +12,4 @@ before_install:
 
 install: pub get
 script: pub run grinder test
-after_success: pub run coveralls var/lcov.info
+after_success: pub run grinder coverage
