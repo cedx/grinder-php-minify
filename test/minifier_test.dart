@@ -10,7 +10,7 @@ void main() => group('Minifier', () {
     final output = joinFile(testDir, ['sample.php']);
 
     test('should remove the comments and whitespace from the scripts of a directory', () async {
-      await Minifier(silent: true).compressDirectory(getDir('test/fixtures'), testDir);
+      await Minifier().compressDirectory(getDir('test/fixtures'), testDir);
       expect(await output.readAsString(), allOf(
         contains("<?= 'Hello World!' ?>"),
         contains('namespace dummy; class Dummy'),
@@ -25,7 +25,7 @@ void main() => group('Minifier', () {
     final output = joinFile(testDir, ['sample.php']);
 
     test('should remove the comments and whitespace from a file', () async {
-      await Minifier(silent: true).compressFile(getFile('test/fixtures/sample.php'), output);
+      await Minifier().compressFile(getFile('test/fixtures/sample.php'), output);
       expect(await output.readAsString(), allOf(
         contains("<?= 'Hello World!' ?>"),
         contains('namespace dummy; class Dummy'),
@@ -40,7 +40,7 @@ void main() => group('Minifier', () {
     final output = joinFile(testDir, ['sample.php']);
 
     test('should remove the comments and whitespace from a set of files', () async {
-      await Minifier(silent: true).compressFiles([getFile('test/fixtures/sample.php')], testDir, base: 'test/fixtures');
+      await Minifier().compressFiles([getFile('test/fixtures/sample.php')], testDir, base: 'test/fixtures');
       expect(await output.readAsString(), allOf(
         contains("<?= 'Hello World!' ?>"),
         contains('namespace dummy; class Dummy'),
