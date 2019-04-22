@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [5.0.0](https://github.com/cedx/grinder-php-minify/compare/v4.3.0...v5.0.0)
+- Breaking change: merged all the functions into the `compress()` function.
+
 ## Version [4.3.0](https://github.com/cedx/grinder-php-minify/compare/v4.2.0...v4.3.0)
 - Raised the [Dart SDK](https://www.dartlang.org/tools/sdk) constraint.
 - Updated the package dependencies.
