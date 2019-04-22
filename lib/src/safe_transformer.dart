@@ -16,5 +16,5 @@ class SafeTransformer implements Transformer {
   /// Processes the specified PHP [script] and returns its contents minified.
   @override
   Future<String> transform(File script) async =>
-    (await Process.run(path.normalize(_executable), ['-w', script.absolute.path])).stdout;
+    (await Process.run(p.normalize(_executable), ['-w', script.absolute.path])).stdout;
 }
