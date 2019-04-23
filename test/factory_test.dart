@@ -3,7 +3,7 @@ import 'package:grinder/grinder.dart';
 import 'package:grinder_php_minify/grinder_php_minify.dart';
 import 'package:test/test.dart';
 
-/// Tests the features of the functions.
+/// Tests the features of the [compress] function.
 void main() => group('compress()', () {
   test('should remove the comments and whitespace from the scripts of a directory', () async {
     final testDir = getDir('var/test/compress.directory');
