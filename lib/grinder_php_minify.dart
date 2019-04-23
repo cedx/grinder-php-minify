@@ -20,6 +20,7 @@ part 'src/transformer.dart';
 /// If [source] is a directory, it will be scanned according to the value of the [recurse] parameter for files matching the specified [pattern].
 /// If [base] is provided, this path is removed from the target path of the destination files.
 /// If [binary] is provided, it will be used as the path to the PHP executable.
+/// The [mode] value indicates the operation mode of the minifier, while the [silent] value indicates whether to silent the minifier output.
 Future<void> compress(FileSystemEntity source, FileSystemEntity destination, {
   String base,
   String binary,
