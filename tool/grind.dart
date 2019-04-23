@@ -32,7 +32,7 @@ void lint() => Analyzer.analyze(existingSourceDirs);
 
 @Task('Starts the development server')
 Future<void> serve() {
-  log('Serving "${libDir.path}/php" on http://localhost:8000');
+  log('serving "${libDir.path}/php" on http://localhost:8000');
   return Process.start('php', ['-S', '127.0.0.1:8000', '-t', '${libDir.path}/php'], mode: ProcessStartMode.inheritStdio);
 }
 
