@@ -98,7 +98,7 @@ import 'package:grinder_php_minify/grinder_php_minify.dart' as php_minify;
 ```
 
 ### bool **silent** = `false`
-By default, the `compress()` function print to the standard output the paths of the minified scripts. You can disable this output by setting the `silent` option to `true`.
+By default, the `compress()` function prints to the standard output the paths of the minified scripts. You can disable this output by setting the `silent` option to `true`.
 
 ```dart
 import 'package:grinder/grinder.dart';
