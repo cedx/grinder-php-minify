@@ -43,3 +43,13 @@ class Minifier {
     return destination.writeAsString(await transformer.transform(source));
   }
 }
+
+/// Defines the type of transformation applied by a minifier.
+enum TransformMode {
+
+  /// Applies a fast transformation.
+  fast,
+
+  /// Applies a safe transformation.
+  safe
+}

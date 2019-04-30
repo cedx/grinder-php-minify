@@ -11,7 +11,6 @@ import 'package:where/where.dart';
 part 'src/fast_transformer.dart';
 part 'src/minifier.dart';
 part 'src/safe_transformer.dart';
-part 'src/transform_mode.dart';
 part 'src/transformer.dart';
 
 /// Minifies the specified [source] file or directory containing PHP files,
