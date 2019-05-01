@@ -1,6 +1,6 @@
 part of '../grinder_php_minify.dart';
 
-/// Interface providing a mechanism for transforming input and producing output.
+/// Removes comments and whitespace from a PHP script.
 abstract class Transformer {
 
   /// Creates a new transformer from the specified [mode], optionaly using the given PHP [executable].
