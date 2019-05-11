@@ -39,7 +39,7 @@ class Minifier {
   /// Minifies the specified PHP [source] file and saves the resulting output to the specified [destination] file.
   Future<File> _transform(File source, File destination) async {
     if (!silent) log('minifying ${source.path}');
-    await destination.parent.create(recursive: true);
+    await destination.create(recursive: true);
     return destination.writeAsString(await transformer.transform(source));
   }
 }
