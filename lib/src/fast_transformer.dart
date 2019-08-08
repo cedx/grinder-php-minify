@@ -6,8 +6,8 @@ class FastTransformer implements Transformer {
   /// Creates a new fast transformer.
   FastTransformer([this._executable = 'php']);
 
-  /// The default address that the server is listening on.
-  static final InternetAddress defaultAddress = InternetAddress.loopbackIPv4;
+  /// The address that the server is listening on.
+  static InternetAddress address = InternetAddress.loopbackIPv4;
 
   /// The path to the PHP executable.
   final String _executable;
@@ -37,7 +37,7 @@ class FastTransformer implements Transformer {
 
     final documentRoot = await Isolate.resolvePackageUri(Uri.parse('package:grinder_php_minify/php/'));
     _port = await _getPort();
-    _process = await Process.start(p.normalize(_executable), ['-S', '${defaultAddress.host}:$_port', '-t', documentRoot.toFilePath()]);
+    _process = await Process.start(p.normalize(_executable), ['-S', '${address.host}:$_port', '-t', documentRoot.toFilePath()]);
     return Future.delayed(const Duration(seconds: 1), () => _port);
   }
 
@@ -46,12 +46,12 @@ class FastTransformer implements Transformer {
   Future<String> transform(File script) async {
     final file = Uri.encodeComponent(script.absolute.path);
     await listen();
-    return http.read('http://${defaultAddress.host}:$_port/server.php?file=$file');
+    return http.read('http://${address.host}:$_port/server.php?file=$file');
   }
 
   /// Gets an ephemeral port chosen by the system.
   Future<int> _getPort() async {
-    final server = await ServerSocket.bind(defaultAddress, 0);
+    final server = await ServerSocket.bind(address, 0);
     final port = server.port;
     await server.close();
     return port;
