@@ -21,7 +21,9 @@ jobs:
       - name: Install dependencies
         run: ${HOME}/dart-sdk/bin/pub get
       - name: Run tests
-        run: ${HOME}/dart-sdk/bin/pub run grinder test
+        run: |
+          ls -a
+          ${HOME}/dart-sdk/bin/pub run grinder test
       - name: Collect code coverage
         env:
           CI: true
