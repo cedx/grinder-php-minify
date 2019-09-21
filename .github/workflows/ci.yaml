@@ -12,26 +12,19 @@ jobs:
           wget https://storage.googleapis.com/dart-archive/channels/stable/release/latest/sdk/dartsdk-linux-x64-release.zip
           unzip dartsdk-linux-x64-release.zip -d ${HOME}
       - name: Check environment
-        env:
-          PATH: ${HOME}/dart-sdk/bin:${PATH}
         run: |
-          dart --version
-          pub --version
+          ${HOME}/dart-sdk/bin/dart --version
+          ${HOME}/dart-sdk/bin/pub --version
           php --version
       - name: Fetch sources
         uses: actions/checkout@v1
       - name: Install dependencies
-        env:
-          PATH: ${HOME}/dart-sdk/bin:${PATH}
-        run: pub get
+        run: ${HOME}/dart-sdk/bin/pub get
       - name: Run tests
-        env:
-          PATH: ${HOME}/dart-sdk/bin:${PATH}
-        run: pub run grinder test
+        run: ${HOME}/dart-sdk/bin/pub run grinder test
       - name: Collect code coverage
         env:
           CI: true
           COVERALLS_REPO_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          PATH: ${HOME}/dart-sdk/bin:${PATH}
         if: success()
-        run: pub run grinder coverage
+        run: ${HOME}/dart-sdk/bin/pub run grinder coverage
