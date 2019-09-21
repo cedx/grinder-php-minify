@@ -21,12 +21,13 @@ jobs:
       - name: Install dependencies
         run: ${HOME}/dart-sdk/bin/pub get
       - name: Run tests
-        run: ${HOME}/dart-sdk/bin/pub run grinder test
+        run: |
+          pwd
+          ${HOME}/dart-sdk/bin/pub run grinder test
       - name: Debug tests # TODO: remove the debug step!
         if: failure()
         run: |
           pwd
-          ls .dart_tool/
           ls .dart_tool/grinder_coveralls/
       - name: Collect code coverage
         env:
