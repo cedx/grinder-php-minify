@@ -31,7 +31,6 @@ jobs:
           cat .dart_tool/grinder_coveralls/test_*.dart
       - name: Collect code coverage
         env:
-          CI: true
           COVERALLS_REPO_TOKEN: ${{secrets.GITHUB_TOKEN}}
         if: success()
         run: ${HOME}/dart-sdk/bin/pub run grinder coverage
