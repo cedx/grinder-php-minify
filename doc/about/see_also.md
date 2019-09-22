@@ -10,4 +10,4 @@
 - [Code coverage](https://coveralls.io/github/cedx/grinder-php-minify)
 
 ## Other implementations
-- Node.js: [Gulp-PHP-Minify](https://dev.belin.io/gulp-php-minify)
+- JavaScript: [Gulp-PHP-Minify](https://dev.belin.io/gulp-php-minify)
