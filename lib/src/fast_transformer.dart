@@ -21,8 +21,7 @@ class FastTransformer implements Transformer {
   /// Value indicating whether the PHP process is currently listening.
   bool get listening => _process != null;
 
-  /// Terminates the underlying PHP process: stops the server from accepting new connections.
-  /// It does nothing if the server is already closed.
+  /// Closes this transformer and releases any resources associated with it.
   @override
   Future<void> close() async {
     if (!listening) return;
