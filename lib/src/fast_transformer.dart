@@ -43,8 +43,8 @@ class FastTransformer implements Transformer {
   /// Processes the specified PHP [script] and returns its contents minified.
   @override
   Future<String> transform(File script) async {
-    final file = Uri.encodeComponent(script.absolute.path);
     await listen();
+    final file = Uri.encodeComponent(script.absolute.path);
     return http.read('http://${address.host}:$_port/server.php?file=$file');
   }
 
