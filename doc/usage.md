@@ -2,7 +2,7 @@
 If you haven't used [Grinder](https://github.com/google/grinder.dart) before, be sure to check out the [related documentation](https://google.github.io/grinder.dart), as it explains how to create a `grind.dart` file and to define project tasks. Once you're familiar with that process, you may install the plug-in.
 
 ## Programming interface
-The plug-in provides a single function, `compress()`, that take one or several [PHP](https://secure.php.net) scripts as input, and remove the comments and whitespace in this file by applying the [`php_strip_whitespace()`](https://secure.php.net/manual/en/function.php-strip-whitespace.php) function on their contents.
+The plug-in provides a single function, `compress()`, that take one or several [PHP](https://www.php.net) scripts as input, and remove the comments and whitespace in this file by applying the [`php_strip_whitespace()`](https://www.php.net/manual/en/function.php-strip-whitespace.php) function on their contents.
     
 ### Future&lt;void&gt; **compress**(FileSystemEntity source, FileSystemEntity destination)
 Minifies the PHP files of a given source directory and saves the resulting output to a destination directory:
@@ -49,7 +49,7 @@ import 'package:grinder_php_minify/grinder_php_minify.dart' as php_minify;
 ```
 
 ### String **binary** = `"php"`
-The `compress()` function rely on the availability of the [PHP](https://secure.php.net) executable on the target system. By default, the `compress()` function will use the `php` binary found on the system path.
+The `compress()` function rely on the availability of the [PHP](https://www.php.net) executable on the target system. By default, the `compress()` function will use the `php` binary found on the system path.
 
 If the function cannot find the default `php` binary, or if you want to use a different one, you can provide the path to the `php` executable by using the `binary` option:
 
@@ -65,7 +65,7 @@ import 'package:grinder_php_minify/grinder_php_minify.dart' as php_minify;
 The `compress()` function can work in two manners, which can be selected using the `mode` option:
 
 - the `safe` mode: as its name implies, this mode is very reliable. But it is also very slow as it spawns a new PHP process for every file to be processed. This is the default mode.
-- the `fast` mode: as its name implies, this mode is very fast, but it is not very reliable. It spawns a PHP web server that processes the input files, but on some systems this fails. This mode requires a [PHP](https://secure.php.net) runtime version **7.2 or later**.
+- the `fast` mode: as its name implies, this mode is very fast, but it is not very reliable. It spawns a PHP web server that processes the input files, but on some systems this fails. This mode requires a [PHP](https://www.php.net) runtime version **7.2 or later**.
 
 ```dart
 import 'package:grinder/grinder.dart';

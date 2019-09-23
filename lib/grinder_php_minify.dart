@@ -1,4 +1,4 @@
-/// [Grinder](https://google.github.io/grinder.dart) plug-in minifying [PHP](https://secure.php.net) source code by removing comments and whitespace.
+/// [Grinder](https://google.github.io/grinder.dart) plug-in minifying [PHP](https://www.php.net) source code by removing comments and whitespace.
 library grinder_php_minify;
 
 import 'dart:io';

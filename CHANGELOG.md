@@ -40,7 +40,7 @@
 
 ## Version [3.0.0](https://github.com/cedx/grinder-php-minify/compare/v2.0.0...v3.0.0)
 - Breaking change: starting to use and support the [Dart 2 SDK](https://dart.dev/tools/sdk).
-- Raised the required [PHP](https://secure.php.net) version.
+- Raised the required [PHP](https://www.php.net) version.
 - Added a user guide based on [MkDocs](http://www.mkdocs.org).
 - Using optional `const` and `new`.
 - Using PHP 7.1 features, like void functions.
