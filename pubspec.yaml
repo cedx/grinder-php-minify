@@ -12,7 +12,7 @@ environment:
   sdk: '>=2.5.0 <3.0.0'
 
 dependencies:
-  grinder: ^0.8.3
+  grinder: '>=0.8.0'
   http: ^0.12.0
   path: ^1.6.4
   where: ^6.4.0
