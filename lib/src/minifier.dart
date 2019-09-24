@@ -13,34 +13,24 @@ class Minifier {
   /// The instance used to process the PHP code.
   final Transformer transformer;
 
-  /// Minifies the PHP files of the specified [source] directory and saves the resulting output to the specified [destination] directory.
+  /// Minifies the PHP scripts corresponding to the specified file [patterns], and saves the resulting output to a [destination] directory.
   ///
-  /// Uses the specified file [pattern] to match the eligible PHP scripts.
-  /// A [recurse] value indicates whether to process the input directory recursively.
-  Future<void> compressDirectory(Directory source, Directory destination, {String pattern = '*.php', bool recurse = false}) {
-    final sources = FileSet.fromDir(source, pattern: pattern, recurse: recurse);
-    return compressFiles(sources.files, destination, base: source.path);
-  }
-
-  /// Minifies the specified PHP [source] file and saves the resulting output to the specified [destination] file.
-  Future<void> compressFile(File source, File destination) async {
-    await _transform(source, destination);
-    return transformer.close();
-  }
-
-  /// Minifies the given set of PHP [sources] and saves the resulting output to the specified [destination] directory.
-  /// A [base] path, defaulting to the current working directory, is removed from the target path of the destination files.
-  Future<void> compressFiles(Iterable<File> sources, Directory destination, {String base}) async {
+  /// The file patterns are resolved against a given [root] path, which defaults to the current working directory.
+  /// An absolute [base] path, defaulting to the current working directory, is removed from the target path of the destination files.
+  Future<void> run(List<Glob> patterns, Directory destination, {String base, Directory root}) async {
     base ??= Directory.current.path;
-    for (final source in sources) await _transform(source, joinFile(destination, [p.relative(source.path, from: base)]));
-    return transformer.close();
-  }
+    root ??= Directory.current;
 
-  /// Minifies the specified PHP [source] file and saves the resulting output to the specified [destination] file.
-  Future<File> _transform(File source, File destination) async {
-    if (!silent) log('minifying ${source.path}');
-    await destination.create(recursive: true);
-    return destination.writeAsString(await transformer.transform(source));
+    for (final pattern in patterns) {
+      for (final file in await pattern.list(root: root.path).toList()) {
+        if (!silent) log('minifying ${file.path}');
+        final output = joinFile(destination, [p.relative(file.path, from: base)]);
+        await output.create(recursive: true);
+        return output.writeAsString(await transformer.transform(file));
+      }
+    }
+
+    return transformer.close();
   }
 }
 

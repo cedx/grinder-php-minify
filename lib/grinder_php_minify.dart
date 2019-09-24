@@ -3,6 +3,7 @@ library grinder_php_minify;
 
 import 'dart:io';
 import 'dart:isolate';
+import 'package:glob/glob.dart';
 import 'package:grinder/grinder.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as p;
