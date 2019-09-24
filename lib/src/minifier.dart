@@ -26,7 +26,7 @@ class Minifier {
         if (!silent) log('minifying ${file.path}');
         final output = joinFile(destination, [p.relative(file.path, from: base)]);
         await output.create(recursive: true);
-        await output.writeAsString(await transformer.transform(file));
+        await output.writeAsString(await transformer.transform(file), flush: true);
       }
     }
 
