@@ -1,18 +1,13 @@
 import 'dart:io';
 import 'package:grinder/grinder.dart';
-import 'package:grinder_php_minify/grinder_php_minify.dart' as php_minify;
+import 'package:grinder_php_minify/grinder_php_minify.dart';
 
-@Task('Compresses the PHP scripts from a given directory')
-Future<void> compressDirectory() => php_minify.compress(
-  getDir('path/to/src'),
-  getDir('path/to/out'),
+@Task('Compresses a given set of PHP scripts')
+Future<void> compressPhp() => phpMinify(
+  'path/to/src/**.php',
+  'path/to/out',
+  base: 'path/to/src',
   binary: Platform.isWindows ? r'C:\Program Files\PHP\php.exe' : '/usr/bin/php',
-  mode: Platform.isWindows ? php_minify.TransformMode.safe : php_minify.TransformMode.fast,
+  mode: Platform.isWindows ? TransformMode.safe : TransformMode.fast,
   silent: stdout.hasTerminal
-);
-
-@Task('Compresses a given PHP script')
-Future<void> compressFile() => php_minify.compress(
-  getFile('path/to/src.php'),
-  getFile('path/to/out.php')
 );
