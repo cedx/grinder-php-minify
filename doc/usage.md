@@ -2,36 +2,31 @@
 If you haven't used [Grinder](https://github.com/google/grinder.dart) before, be sure to check out the [related documentation](https://google.github.io/grinder.dart), as it explains how to create a `grind.dart` file and to define project tasks. Once you're familiar with that process, you may install the plug-in.
 
 ## Programming interface
-The plug-in provides a single function, `phpMinify()`, that take one or several [PHP](https://www.php.net) scripts as input, and remove the comments and whitespace in this file by applying the [`php_strip_whitespace()`](https://www.php.net/manual/en/function.php-strip-whitespace.php) function on their contents.
+The plug-in provides a single function, `phpMinify()`, that takes a list of [PHP](https://www.php.net) scripts as input, and remove the comments and whitespace in these files by applying the [`php_strip_whitespace()`](https://www.php.net/manual/en/function.php-strip-whitespace.php) function on their contents.
     
-### Future&lt;void&gt; **phpMinify**(FileSystemEntity source, FileSystemEntity destination)
-Minifies the PHP files of a given source directory and saves the resulting output to a destination directory:
+### Future&lt;void&gt; **phpMinify**(dynamic patterns, dynamic destination)
+Minifies the PHP scripts corresponding to the specified file patterns, and saves the resulting output to a destination directory:
 
 ```dart
 import 'package:grinder/grinder.dart';
 import 'package:grinder_php_minify/grinder_php_minify.dart';
 
-@Task('Compress the PHP scripts from a given directory')
-Future<void> compressDirectory() =>
-  php_minify.phpMinify(getDir('path/to/src'), getDir('path/to/out'));
+@Task() Future<void> compressPhp() =>
+  phpMinify('path/to/src/**.php', 'path/to/out');
 ```
 
-Minifies a single PHP source file and saves the resulting output to a given destination file:
+The file patterns use the same syntax as the [`glob` package](https://pub.dev/packages/glob).
 
-```dart
-import 'package:grinder/grinder.dart';
-import 'package:grinder_php_minify/grinder_php_minify.dart';
-
-@Task('Compress a given PHP script')
-Future<void> compressFile() =>
-  php_minify.phpMinify(getFile('path/to/src.php'), getFile('path/to/out.php'));
-```
+!!! tip
+    You can provide several file patterns to the `phpMinify()` function:
+    the `patterns` parameter can be a `String` (single pattern) or a `List<String>` (multiple patterns).  
+    The path to the destination directory can be provided as a `String` or as a [`Directory`](https://api.dartlang.org/stable/dart-io/Directory-class.html) instance.
 
 ## Options
 The `phpMinify()` function also support the following optional named parameters:
 
 ### String **base**
-When the source input is a directory, the `base` parameter is used to customize the resulting file tree in the destination directory. It is treated as a base path that is stripped from the computed path of the destination files:
+The `base` parameter is used to customize the resulting file tree in the destination directory. It is treated as a base path that is stripped from the computed path of the destination files:
 
 ```dart
 import 'package:grinder/grinder.dart';
@@ -40,11 +35,11 @@ import 'package:grinder_php_minify/grinder_php_minify.dart';
 @Task() Future<void> compressPhp() {
   // Given the script "src/subdir/script.php"...
   
-  phpMinify(getDir('src'), getDir('out1'));
-  // ... will create the file "out1/subdir/script.php".
+  phpMinify('src/**.php', 'out1');
+  // ...will create the file "out1/src/subdir/script.php".
 
-  phpMinify(getDir('src'), getDir('out2'), base: 'src/subdir');
-  // ... will create the file "out2/script.php": the "subdir/" component was removed.
+  phpMinify('src/**.php', 'out2', base: 'src/subdir');
+  // ...will create the file "out2/script.php": the "src/subdir/" component was removed.
 }
 ```
 
@@ -58,7 +53,7 @@ import 'package:grinder/grinder.dart';
 import 'package:grinder_php_minify/grinder_php_minify.dart';
 
 @Task() Future<void> compressPhp() =>
-  phpMinify(getDir('src'), getDir('out'), binary: r'C:\Program Files\PHP\php.exe');
+  phpMinify('src/**.php', 'out', binary: r'C:\Program Files\PHP\php.exe');
 ```
 
 ### TransformMode **mode** = `TransformMode.safe`
@@ -72,7 +67,7 @@ import 'package:grinder/grinder.dart';
 import 'package:grinder_php_minify/grinder_php_minify.dart';
 
 @Task() Future<void> compressPhp() =>
-  phpMinify(getDir('src'), getDir('out'), mode: TransformMode.fast);
+  phpMinify('src/**.php', 'out', mode: TransformMode.fast);
 ```
 
 ### bool **silent** = `false`
@@ -83,5 +78,5 @@ import 'package:grinder/grinder.dart';
 import 'package:grinder_php_minify/grinder_php_minify.dart';
 
 @Task() Future<void> compressPhp() =>
-  phpMinify(getDir('src'), getDir('out'), silent: true);
+  phpMinify('src/**.php', 'out', silent: true);
 ```
