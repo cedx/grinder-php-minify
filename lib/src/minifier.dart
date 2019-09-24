@@ -17,7 +17,7 @@ class Minifier {
   ///
   /// The file patterns are resolved against a given [root] path, which defaults to the current working directory.
   /// An absolute [base] path, defaulting to the current working directory, is removed from the target path of the destination files.
-  Future<void> run(List<Glob> patterns, Directory destination, {String base, Directory root}) async {
+  Future<void> run(Iterable<Glob> patterns, Directory destination, {String base, Directory root}) async {
     base ??= Directory.current.path;
     root ??= Directory.current;
 
@@ -26,7 +26,7 @@ class Minifier {
         if (!silent) log('minifying ${file.path}');
         final output = joinFile(destination, [p.relative(file.path, from: base)]);
         await output.create(recursive: true);
-        return output.writeAsString(await transformer.transform(file));
+        await output.writeAsString(await transformer.transform(file));
       }
     }
 
