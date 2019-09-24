@@ -22,7 +22,7 @@ class Minifier {
     root ??= Directory.current;
 
     for (final pattern in patterns) {
-      for (final file in await pattern.list(root: root.path).toList()) {
+      await for (final file in pattern.list(root: root.path)) {
         if (!silent) log('minifying ${file.path}');
         final output = joinFile(destination, [p.relative(file.path, from: base)]);
         await output.create(recursive: true);
