@@ -27,6 +27,6 @@ Future<void> phpMinify(patterns, destination, {
   bool silent = false
 }) async {
   final globs = patterns is List ? patterns : [patterns];
-  return Minifier(binary: binary ?? await where('php', onError: (command) => command), mode: mode, silent: silent)
+  return Minifier(binary: p.normalize(binary) ?? await where('php', onError: (command) => command), mode: mode, silent: silent)
     .run(globs.map((pattern) => Glob(pattern)), FilePath(destination).asDirectory, base: base);
 }
