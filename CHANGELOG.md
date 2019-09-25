@@ -4,7 +4,7 @@
 - Breaking change: renamed the `compress()` function to `phpMinify()`.
 - Breaking change: renamed the `FastTransformer.defaultAddress` static property to `address`.
 - Breaking change: replaced the `compressDirectory()`, `compressFile()` and `compressFiles()` methods from the `Minifier` class by the `run()` one.
-- Breaking change: using [`glob`](https://pub.dev/packages/glob) patterns instead of `FileSystemEntity` parameters for providing the list of files to be proceeded.
+- Breaking change: using [`glob`](https://pub.dev/packages/glob) patterns instead of `FileSystemEntity` parameters for providing the list of files to be processed.
 - Raised the [Dart SDK](https://dart.dev/tools/sdk) constraint.
 - Replaced [Travis CI](https://travis-ci.com) by [GitHub Actions](https://github.com/features/actions) for the continuous integration.
 - Updated the package dependencies.
