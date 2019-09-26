@@ -32,13 +32,13 @@ The `base` parameter is used to customize the resulting file tree in the destina
 import 'package:grinder/grinder.dart';
 import 'package:grinder_php_minify/grinder_php_minify.dart';
 
-@Task() Future<void> compressPhp() {
+@Task() Future<void> compressPhp() async {
   // Given the script "src/subdir/script.php"...
   
-  phpMinify('src/**.php', 'out1');
+  await phpMinify('src/**.php', 'out1');
   // ...will create the file "out1/src/subdir/script.php".
 
-  phpMinify('src/**.php', 'out2', base: 'src/subdir');
+  await phpMinify('src/**.php', 'out2', base: 'src/subdir');
   // ...will create the file "out2/script.php": the "src/subdir/" component was removed.
 }
 ```
