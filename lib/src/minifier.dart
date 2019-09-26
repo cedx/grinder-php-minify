@@ -4,8 +4,8 @@ part of '../grinder_php_minify.dart';
 class Minifier {
 
   /// Creates a new minifier.
-  Minifier({String binary = 'php', TransformMode mode = TransformMode.safe, this.silent = true}):
-    transformer = Transformer(mode, executable: binary);
+  Minifier({String binary = 'php', TransformMode mode = TransformMode.safe, this.silent = false}):
+    transformer = Transformer(mode, executable: p.normalize(binary));
 
   /// Value indicating whether to silent the minifier output.
   bool silent;
