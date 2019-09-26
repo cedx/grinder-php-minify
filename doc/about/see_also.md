@@ -4,6 +4,7 @@
 - [API reference](https://dev.belin.io/grinder-php-minify/api)
 - [Pub package](https://pub.dev/packages/grinder_php_minify)
 - [Submit an issue](https://github.com/cedx/grinder-php-minify/issues)
+- [Grinder API docs](https://pub.dev/documentation/grinder)
 
 ## Testing
 - [Continuous integration](https://github.com/cedx/grinder-php-minify/actions)
@@ -11,3 +12,4 @@
 
 ## Other implementations
 - JavaScript: [Gulp-PHP-Minify](https://dev.belin.io/gulp-php-minify)
+- PHP: [Robo-PHP-Minify](https://dev.belin.io/robo-php-minify)
