@@ -6,20 +6,9 @@ import 'package:test/test.dart';
 /// Tests the features of the [Minifier] class.
 void main() => group('Minifier', () {
   group('.run()', () {
-    test('should remove the comments and whitespace from the PHP scripts', () async {
-      final testDir = getDir('var/test/Minifier.run');
-      await Minifier().run([Glob('test/**.php')], testDir, base: 'test/fixtures');
-      expect(await joinFile(testDir, ['sample.php']).readAsString(), allOf(
-        contains("<?= 'Hello World!' ?>"),
-        contains('namespace dummy; class Dummy'),
-        contains(r'$className = get_class($this); return $className;'),
-        contains('__construct() { }')
-      ));
-    });
-
-    test('should support the fast transformer', () async {
+    test('should remove the comments and whitespace using the fast transformer', () async {
       final testDir = getDir('var/test/Minifier.run.fast');
-      await Minifier().run([Glob('test/**.php')], testDir, base: 'test/fixtures');
+      await Minifier(mode: TransformMode.fast, silent: true).run([Glob('test/**.php')], testDir, base: 'test/fixtures');
       expect(await joinFile(testDir, ['sample.php']).readAsString(), allOf(
         contains("<?= 'Hello World!' ?>"),
         contains('namespace dummy; class Dummy'),
@@ -28,9 +17,9 @@ void main() => group('Minifier', () {
       ));
     });
 
-    test('should support the safe transformer', () async {
+    test('should remove the comments and whitespace using the safe transformer', () async {
       final testDir = getDir('var/test/Minifier.run.safe');
-      await Minifier().run([Glob('test/**.php')], testDir, base: 'test/fixtures');
+      await Minifier(mode: TransformMode.safe, silent: true).run([Glob('test/**.php')], testDir, base: 'test/fixtures');
       expect(await joinFile(testDir, ['sample.php']).readAsString(), allOf(
         contains("<?= 'Hello World!' ?>"),
         contains('namespace dummy; class Dummy'),
