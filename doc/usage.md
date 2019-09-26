@@ -44,7 +44,7 @@ import 'package:grinder_php_minify/grinder_php_minify.dart';
 ```
 
 ### String **binary** = `"php"`
-The `phpMinify()` function rely on the availability of the [PHP](https://www.php.net) executable on the target system. By default, the `phpMinify()` function will use the `php` binary found on the system path.
+The `phpMinify()` function relies on the availability of the [PHP](https://www.php.net) executable on the target system. By default, the `phpMinify()` function will use the `php` binary found on the system path.
 
 If the function cannot find the default `php` binary, or if you want to use a different one, you can provide the path to the `php` executable by using the `binary` option:
 
