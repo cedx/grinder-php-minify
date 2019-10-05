@@ -20,7 +20,7 @@ The file patterns use the same syntax as the [`glob` package](https://pub.dev/pa
 !!! tip
     You can provide several file patterns to the `phpMinify()` function:
     the `patterns` parameter can be a `String` (single pattern) or a `List<String>` (multiple patterns).  
-    The path to the destination directory can be provided as a `String` or as a [`Directory`](https://api.dartlang.org/stable/dart-io/Directory-class.html) instance.
+    The path to the destination directory can be provided as a `String` or as a [`Directory`](https://api.dart.dev/stable/dart-io/Directory-class.html) instance.
 
 ## Options
 The `phpMinify()` function also support the following optional named parameters:
