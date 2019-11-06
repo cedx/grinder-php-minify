@@ -9,7 +9,7 @@ issue_tracker: https://github.com/cedx/grinder-php-minify/issues
 repository: https://github.com/cedx/grinder-php-minify
 
 environment:
-  sdk: '>=2.5.0 <3.0.0'
+  sdk: '>=2.6.0 <3.0.0'
 
 dependencies:
   glob: ^1.1.7
