@@ -35,10 +35,7 @@ void lint() => Analyzer.analyze(existingSourceDirs);
 void publish() => run('pub', arguments: ['publish', '--force'], runOptions: RunOptions(runInShell: true));
 
 @Task('Starts the development server')
-Future<void> serve() {
-  log('serving "${libDir.path}/php" on http://127.0.0.1:8000');
-  return Process.start('php', ['-S', '127.0.0.1:8000', '-t', '${libDir.path}/php'], mode: ProcessStartMode.inheritStdio);
-}
+Future<void> serve() => runAsync('php', arguments: ['-S', '127.0.0.1:8000', '-t', '${libDir.path}/php']);
 
 @Task('Runs the test suites')
 Future<void> test() => collectCoverage('test/**_test.dart', reportOn: [libDir.path], saveAs: 'var/lcov.info');
