@@ -11,7 +11,7 @@ dependencies:
   grinder_php_minify: *
 ```
 
-Install the latest version of **Grinder-PHP-Minify** with [Pub](https://dart.dev/tools/pub/cmd):
+Install the latest version of **Grinder-PHP-Minify** with [Pub](https://dart.dev/tools/pub):
 
 ```shell
 pub get
