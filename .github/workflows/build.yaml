@@ -11,6 +11,11 @@ jobs:
         run: |
           wget https://storage.googleapis.com/dart-archive/channels/stable/release/latest/sdk/dartsdk-linux-x64-release.zip
           unzip dartsdk-linux-x64-release.zip -d ${HOME}
+      - name: Set up PHP
+        uses: shivammathur/setup-php@master
+        with:
+          php-version: 7.4
+          extensions: mbstring
       - name: Check environment
         run: |
           ${HOME}/dart-sdk/bin/dart --version
