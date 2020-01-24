@@ -8,9 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Dart
-        run: |
-          wget https://storage.googleapis.com/dart-archive/channels/stable/release/latest/sdk/dartsdk-linux-x64-release.zip
-          unzip dartsdk-linux-x64-release.zip -d ${HOME}
+        uses: cedx/setup-dart@master
       - name: Set up PHP
         uses: shivammathur/setup-php@master
         with:
@@ -18,17 +16,17 @@ jobs:
           extensions: mbstring
       - name: Check environment
         run: |
-          ${HOME}/dart-sdk/bin/dart --version
-          ${HOME}/dart-sdk/bin/pub --version
+          dart --version
+          pub --version
           php --version
       - name: Fetch sources
         uses: actions/checkout@master
       - name: Install dependencies
-        run: ${HOME}/dart-sdk/bin/pub get
+        run: pub get
       - name: Run tests
-        run: ${HOME}/dart-sdk/bin/pub run grinder test
+        run: pub run grinder test
       - name: Collect code coverage
         env:
           COVERALLS_REPO_TOKEN: ${{secrets.GITHUB_TOKEN}}
         if: success()
-        run: ${HOME}/dart-sdk/bin/pub run grinder coverage
+        run: pub run grinder coverage
