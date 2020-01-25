@@ -8,9 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set up Dart
-        uses: cedx/setup-dart@master
+        uses: cedx/setup-dart@v1
       - name: Set up PHP
-        uses: shivammathur/setup-php@master
+        uses: shivammathur/setup-php@v1
         with:
           php-version: 7.4
           extensions: mbstring
@@ -20,7 +20,7 @@ jobs:
           pub --version
           php --version
       - name: Fetch sources
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
       - name: Install dependencies
         run: pub get
       - name: Run tests
