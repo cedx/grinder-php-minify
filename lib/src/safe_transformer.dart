@@ -4,7 +4,7 @@ part of '../grinder_php_minify.dart';
 class SafeTransformer implements Transformer {
 
   /// Creates a new safe transformer.
-  SafeTransformer([this._executable = 'php']);
+  SafeTransformer([this._executable = 'php']): assert(_executable.isNotEmpty);
 
   /// The path to the PHP executable.
   final String _executable;

@@ -5,6 +5,7 @@ class Minifier {
 
   /// Creates a new minifier.
   Minifier({String binary = 'php', TransformMode mode = TransformMode.safe, this.silent = false}):
+    assert(binary.isNotEmpty),
     transformer = Transformer(mode, executable: p.normalize(binary));
 
   /// Value indicating whether to silent the minifier output.

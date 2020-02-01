@@ -26,6 +26,9 @@ Future<void> phpMinify(patterns, destination, {
   TransformMode mode = TransformMode.safe,
   bool silent = false
 }) async {
+  assert(patterns is String || patterns is List<String>);
+  assert(destination is String || destination is Directory);
+
   final globs = patterns is List ? patterns : [patterns];
   return Minifier(binary: binary ?? await where('php', onError: (command) => command), mode: mode, silent: silent)
     .run(globs.map((pattern) => Glob(pattern)), FilePath(destination).asDirectory, base: base);

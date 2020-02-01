@@ -4,7 +4,7 @@ part of '../grinder_php_minify.dart';
 class FastTransformer implements Transformer {
 
   /// Creates a new fast transformer.
-  FastTransformer([this._executable = 'php']);
+  FastTransformer([this._executable = 'php']): assert(_executable.isNotEmpty);
 
   /// The address that the server is listening on.
   static InternetAddress address = InternetAddress.loopbackIPv4;
