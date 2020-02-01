@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [6.1.0](https://github.com/cedx/grinder-php-minify/compare/v6.0.0...v6.1.0)
+- Raised the [Dart SDK](https://dart.dev/tools/sdk) constraint.
+- Updated the package dependencies.
+
 ## Version [6.0.0](https://github.com/cedx/grinder-php-minify/compare/v5.0.0...v6.0.0)
 - Breaking change: renamed the `compress()` function to `phpMinify()`.
 - Breaking change: renamed the `FastTransformer.defaultAddress` static property to `address`.
