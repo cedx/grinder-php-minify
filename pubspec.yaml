@@ -1,5 +1,5 @@
 name: grinder_php_minify
-version: 6.0.0
+version: 6.1.0
 
 description: Grinder plug-in minifying PHP source code by removing comments and whitespace.
 homepage: https://dev.belin.io/grinder-php-minify
