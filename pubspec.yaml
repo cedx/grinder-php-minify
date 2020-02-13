@@ -17,5 +17,6 @@ dependencies:
   where: ^6.6.0
 
 dev_dependencies:
-  grinder_coveralls: ^2.1.0
+  coverage: ^0.13.6
+  coveralls: ^5.7.0
   test: ^1.12.0
