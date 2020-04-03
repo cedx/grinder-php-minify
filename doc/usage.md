@@ -1,5 +1,5 @@
 # Usage
-If you haven't used [Grinder](https://github.com/google/grinder.dart) before, be sure to check out the [related documentation](https://google.github.io/grinder.dart), as it explains how to create a `grind.dart` file and to define project tasks. Once you're familiar with that process, you may install the plug-in.
+If you haven't used [Grinder](https://github.com/google/grinder.dart) before, be sure to check out the [related documentation](https://pub.dev/packages/grinder), as it explains how to create a `grind.dart` file and to define project tasks. Once you're familiar with that process, you may install the plug-in.
 
 ## Programming interface
 The plug-in provides a single function, `phpMinify()`, that takes a list of [PHP](https://www.php.net) scripts as input, and remove the comments and whitespace in these files by applying the [`php_strip_whitespace()`](https://www.php.net/manual/en/function.php-strip-whitespace.php) function on their contents.
