@@ -3,8 +3,8 @@ site_description: Grinder plug-in minifying PHP source code by removing comments
 site_author: Cédric Belin - cedric@belin.io
 site_url: https://docs.belin.io/grinder-php-minify
 
-docs_dir: doc
-site_dir: www
+docs_dir: ../doc
+site_dir: ../www
 
 repo_name: git.belin.io
 repo_url: https://git.belin.io/cedx/grinder-php-minify
