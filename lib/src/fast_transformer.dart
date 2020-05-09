@@ -45,7 +45,7 @@ class FastTransformer implements Transformer {
   Future<String> transform(File script) async {
     final file = Uri.encodeComponent(script.absolute.path);
     final port = await listen();
-    return http.read('http://${address.host}:$port/server.php?file=$file');
+    return http.read('http://${address.host}:$port/?file=$file');
   }
 
   /// Gets an ephemeral port chosen by the system.
