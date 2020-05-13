@@ -5,7 +5,7 @@
 
 ## Documentation
 - [User guide](https://docs.belin.io/grinder-php-minify)
-- [API reference](https://pub.dev/documentation/grinder_php_minify)
+- [API reference](https://api.belin.io/grinder-php-minify)
 
 ## Development
 - [Git repository](https://git.belin.io/cedx/grinder-php-minify)
