@@ -9,7 +9,3 @@
 ## Testing
 - [Continuous integration](https://github.com/cedx/grinder-php-minify/actions)
 - [Code coverage](https://coveralls.io/github/cedx/grinder-php-minify)
-
-## Other implementations
-- JavaScript: [Gulp-PHP-Minify](https://docs.belin.io/gulp-php-minify)
-- PHP: [Robo-PHP-Minify](https://docs.belin.io/robo-php-minify)

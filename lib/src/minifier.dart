@@ -1,46 +1,46 @@
-part of '../grinder_php_minify.dart';
+part of "../grinder_php_minify.dart";
 
-/// Removes PHP comments and whitespace by applying the ['php_strip_whitespace()'](https://www.php.net/manual/en/function.php-strip-whitespace.php) function.
+/// Removes PHP comments and whitespace by applying the [`php_strip_whitespace()`](https://www.php.net/manual/en/function.php-strip-whitespace.php) function.
 class Minifier {
 
-  /// Creates a new minifier.
-  Minifier({String binary = 'php', TransformMode mode = TransformMode.safe, this.silent = false}):
-    assert(binary.isNotEmpty),
-    transformer = Transformer(mode, executable: p.normalize(binary));
+	/// Creates a new minifier.
+	Minifier({String binary = "php", TransformMode mode = TransformMode.safe, this.silent = false}):
+		assert(binary.isNotEmpty),
+		transformer = Transformer(mode, executable: p.normalize(binary));
 
-  /// Value indicating whether to silent the minifier output.
-  bool silent;
+	/// Value indicating whether to silent the minifier output.
+	bool silent;
 
-  /// The instance used to process the PHP code.
-  final Transformer transformer;
+	/// The instance used to process the PHP code.
+	final Transformer transformer;
 
-  /// Minifies the PHP scripts corresponding to the specified file [patterns], and saves the resulting output to a [destination] directory.
-  ///
-  /// The file patterns are resolved against a given [root] path, which defaults to the current working directory.
-  /// An absolute [base] path, defaulting to the current working directory, is removed from the target path of the destination files.
-  Future<void> run(Iterable<Glob> patterns, Directory destination, {String base, Directory root}) async {
-    base ??= Directory.current.path;
-    root ??= Directory.current;
+	/// Minifies the PHP scripts corresponding to the specified file [patterns], and saves the resulting output to a [destination] directory.
+	///
+	/// The file patterns are resolved against a given [root] path, which defaults to the current working directory.
+	/// An absolute [base] path, defaulting to the current working directory, is removed from the target path of the destination files.
+	Future<void> run(Iterable<Glob> patterns, Directory destination, {String base, Directory root}) async {
+		base ??= Directory.current.path;
+		root ??= Directory.current;
 
-    for (final pattern in patterns) {
-      await for (final file in pattern.list(root: root.path)) {
-        if (!silent) log('minifying ${file.path}');
-        final output = joinFile(destination, [p.relative(file.path, from: base)]);
-        await output.create(recursive: true);
-        await output.writeAsString(await transformer.transform(file));
-      }
-    }
+		for (final pattern in patterns) {
+			await for (final file in pattern.list(root: root.path)) {
+				if (!silent) log("minifying ${file.path}");
+				final output = joinFile(destination, [p.relative(file.path, from: base)]);
+				await output.create(recursive: true);
+				await output.writeAsString(await transformer.transform(file));
+			}
+		}
 
-    return transformer.close();
-  }
+		return transformer.close();
+	}
 }
 
 /// Defines the type of transformation applied by a minifier.
 enum TransformMode {
 
-  /// Applies a fast transformation.
-  fast,
+	/// Applies a fast transformation.
+	fast,
 
-  /// Applies a safe transformation.
-  safe
+	/// Applies a safe transformation.
+	safe
 }
