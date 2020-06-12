@@ -3,10 +3,7 @@
 	"editor.tabSize": 2,
 	"files.encoding": "utf8",
 	"files.insertFinalNewline": true,
-	"files.trimFinalNewlines": true,
-	"rest-client.environmentVariables": {
-		"test": {
-			"baseUrl": "http://localhost:8000"
-		}
-	}
+	"files.trimTrailingWhitespace": true,
+	"[markdown]": {"files.trimTrailingWhitespace": false},
+	"[yaml]": {"editor.insertSpaces": true}
 }
