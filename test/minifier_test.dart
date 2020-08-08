@@ -19,7 +19,7 @@ void main() => group("Minifier", () {
 
 		test("should remove the comments and whitespace using the safe transformer", () async {
 			final testDir = getDir("var/test/Minifier.run.safe");
-			await Minifier(mode: TransformMode.safe, silent: true).run([Glob("test/**.php")], testDir, base: "test/fixtures");
+			await Minifier(silent: true).run([Glob("test/**.php")], testDir, base: "test/fixtures");
 			expect(await joinFile(testDir, ["sample.php"]).readAsString(), allOf(
 				contains("<?= 'Hello World!' ?>"),
 				contains("namespace dummy; class Dummy"),

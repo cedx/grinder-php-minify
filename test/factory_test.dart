@@ -17,7 +17,7 @@ void main() => group("phpMinify()", () {
 
 	test("should remove the comments and whitespace using the safe transformer", () async {
 		const testDir = "var/test/phpMinify.safe";
-		await phpMinify("test/**.php", testDir, base: "test/fixtures", mode: TransformMode.safe, silent: true);
+		await phpMinify("test/**.php", testDir, base: "test/fixtures", silent: true);
 		expect(await joinFile(getDir(testDir), ["sample.php"]).readAsString(), allOf(
 			contains("<?= 'Hello World!' ?>"),
 			contains("namespace dummy; class Dummy"),
