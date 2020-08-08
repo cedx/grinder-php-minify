@@ -14,7 +14,7 @@ dependencies:
   grinder: ^0.8.5
   http: ^0.12.2
   path: ^1.7.0
-  where: ^7.0.0
+  where: ^8.0.0
 
 dev_dependencies:
   coverage: ^0.14.0
