@@ -17,6 +17,6 @@ dependencies:
   where: ^8.0.0
 
 dev_dependencies:
-  coverage: ^0.14.0
+  coverage: ^0.14.1
   coveralls: ^5.10.0
   test: ^1.15.3
