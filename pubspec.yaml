@@ -11,7 +11,7 @@ environment:
 
 dependencies:
   glob: ^1.2.0
-  grinder: ^0.8.5
+  grinder: ^0.8.6
   http: ^0.12.2
   path: ^1.7.0
   where: ^8.0.0
