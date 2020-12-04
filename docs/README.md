@@ -14,7 +14,7 @@ dependencies:
 Install the latest version of **Grinder-PHP-Minify** with [Pub](https://dart.dev/tools/pub):
 
 ```shell
-pub get
+dart pub get
 ```
 
 For detailed instructions, see the [installation guide](installation.md).
