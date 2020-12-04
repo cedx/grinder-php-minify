@@ -14,7 +14,8 @@ jobs:
           php-version: 7.4
           extensions: mbstring
       - name: Check environment
-        run: dart --version
+        run: |
+          dart --version
           php --version
       - name: Fetch sources
         uses: actions/checkout@v2
