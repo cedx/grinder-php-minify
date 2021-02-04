@@ -1,9 +1,9 @@
 # See also
 
 ## Development
-- [API reference](https://api.belin.io/grinder-php-minify)
+- [API reference](https://pub.dev/documentation/grinder_php_minify)
 - [Pub package](https://pub.dev/packages/grinder_php_minify)
-- [Submit an issue](https://git.belin.io/cedx/grinder-php-minify/issues)
+- [Submit an issue](https://github.com/cedx/grinder-php-minify/issues)
 - [Grinder API docs](https://pub.dev/documentation/grinder)
 
 ## Testing
