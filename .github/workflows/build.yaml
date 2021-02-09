@@ -15,10 +15,6 @@ jobs:
         with:
           php-version: 8.0
           extensions: mbstring
-      - name: Check environment
-        run: |
-          dart --version
-          php --version
       - name: Install dependencies
         run: dart pub get
       - name: Run tests
