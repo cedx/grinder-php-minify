@@ -1,9 +1,7 @@
 # Installation
 
 ## Requirements
-Before installing **Grinder-PHP-Minify**, you need to make sure you have the [Dart SDK](https://dart.dev/tools/sdk)
-and [Pub](https://dart.dev/tools/pub), the Dart package manager, up and running.
-
+Before installing **Grinder-PHP-Minify**, you need to make sure you have the [Dart SDK](https://dart.dev/tools/sdk) up and running.
 You can verify if you're already good to go with the following command:
 
 ```shell
@@ -37,4 +35,4 @@ Now in your [Dart](https://dart.dev) code, you can use:
 import "package:grinder_php_minify/grinder_php_minify.dart";
 ```
 
-See the [usage information](usage/api.md).
+See the [usage information](usage.md).
