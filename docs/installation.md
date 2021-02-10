@@ -36,3 +36,5 @@ Now in your [Dart](https://dart.dev) code, you can use:
 ```dart
 import "package:grinder_php_minify/grinder_php_minify.dart";
 ```
+
+See the [usage information](usage/api.md).
